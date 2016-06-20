@@ -11,7 +11,7 @@ public interface MVP {
      * 处理业务逻辑以及数据相关
      * @param <V>
      */
-    public static interface MVPPresenter<V> {
+    public static interface MVPPresenter<V extends MVPView> {
         public void setView(V view);
         public V getView();
     }
