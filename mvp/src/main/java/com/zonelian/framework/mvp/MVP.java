@@ -25,11 +25,10 @@ public interface MVP {
 
     /**
      * 持有数据
-     * @param <M>
      */
-    public static interface MVPRepository<M> {
+    public static interface MVPRepository<K, V> {
 
-        public void put(String key, M data);
-        public M get(String key);
+        public void put(K key, V data);
+        public V get(K key);
     }
 }

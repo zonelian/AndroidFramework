@@ -53,7 +53,7 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(position >= mHeaderCount && position < mHeaderCount + getContentItemCount()) {
-            onBindItemViewHolder((V)holder, position);
+            onBindItemViewHolder((V)holder, position - mHeaderCount);
         }
     }
 

@@ -7,40 +7,53 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 
 /**
  * Created by kernel on 16/6/19.
  * Email: 372786297@qq.com
  */
 public class TestOkHttpTask implements UseCase{
+    private Callback mCallback;
+    private Request mRequest;
+    private Response mResponse;
 
     @Override
-    public void cancel() {
-
-    }
-
-    @Override
-    public void start() {
+    public void execute(Request request) {
+        mRequest = request;
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10000, TimeUnit.SECONDS)
                 .readTimeout(10000, TimeUnit.SECONDS)
                 .writeTimeout(10000, TimeUnit.SECONDS)
                 .build();
 
-        Request request = new Request.Builder()
+        okhttp3.Request okRequest = new okhttp3.Request.Builder()
                 .url("http://www.baiud.com")
                 .get()
                 .build();
 
-        Call call = okHttpClient.newCall(request);
+        Call call = okHttpClient.newCall(okRequest);
         OkResponseCallbackWrapper wrapper = new OkResponseCallbackWrapper.Builder()
                 .build();
         call.enqueue(wrapper.enqueue());
     }
 
     @Override
-    public void stop() {
+    public Request getRequest() {
+        return mRequest;
+    }
 
+    @Override
+    public Response getResponse() {
+        return mResponse;
+    }
+
+    @Override
+    public void setCallback(Callback callback) {
+        this.mCallback = callback;
+    }
+
+    @Override
+    public Callback getCallback() {
+        return mCallback;
     }
 }

@@ -46,7 +46,7 @@ public class OkResponseCallbackWrapper {
                     obj = mResponseParser.parse(response.body().string(), mBeanClass);
                 }
                 if(obj != null ) {
-                    if(obj.getCode() == 200) {
+                    if(obj.isOk()) {
                         onResultSuccess(call, response, obj);
                     }else {
                         onResultFaild(call, response, obj.getCode(), obj.getMsg());

@@ -6,10 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by kernel on 16/6/19.
@@ -27,29 +23,12 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder{
         this(layoutInflater.inflate(layoutResId, null));
     }
 
-    public View getView(@IdRes int viewId) {
+    public <V extends View> V getView(@IdRes int viewId) {
         if(childViews.get(viewId) != null) {
-            return childViews.get(viewId);
+            return (V)childViews.get(viewId);
         }
         View child = itemView.findViewById(viewId);
         childViews.put(viewId, child);
-        return child;
+        return (V)child;
     }
-
-    public TextView getTextView(@IdRes int viewId) {
-        return (TextView)getView(viewId);
-    }
-
-    public EditText getEditText(@IdRes int viewId) {
-        return (EditText)getView(viewId);
-    }
-
-    public ImageView getImageView(@IdRes int viewId) {
-        return (ImageView)getView(viewId);
-    }
-
-    public Button getButton(@IdRes int viewId) {
-        return (Button)getView(viewId);
-    }
-
 }

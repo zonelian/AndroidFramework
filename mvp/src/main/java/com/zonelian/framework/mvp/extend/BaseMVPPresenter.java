@@ -11,7 +11,7 @@ import com.zonelian.framework.mvp.MVP;
  */
 public interface BaseMVPPresenter<T extends MVP.MVPView> extends MVP.MVPPresenter {
 
-    public void init();
+    public void onCreate(Bundle savedInstanceState);
 
     public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState);
 

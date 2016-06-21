@@ -7,4 +7,5 @@ package com.zonelian.framework.base.okhttp;
 public interface Result {
     public int getCode();
     public String getMsg();
+    public boolean isOk();
 }

@@ -30,7 +30,9 @@ public class TestOkHttp {
 
         MultipartBody.Part stringPart = MultipartBody.Part.createFormData("", "");
 
+
         RequestBody fileBody = RequestBody.create(MediaType.parse("file"), new File(""));
+
         MultipartBody.Part filePart = MultipartBody.Part.createFormData("", "abd", fileBody);
 
         MultipartBody multipartBody = new MultipartBody.Builder()

@@ -15,14 +15,13 @@ import rx.schedulers.Schedulers;
  * Email: 372786297@qq.com
  */
 public class TestRxTask implements UseCase{
-    private ResultCallBack mResultCallback = null;
-
-    public TestRxTask(ResultCallBack resultCallback) {
-        this.mResultCallback = resultCallback;
-    }
+    private Callback mCallback;
+    private Request mRequest;
+    private Response mResponse;
 
     @Override
-    public void start() {
+    public void execute(Request request) {
+        this.mRequest = request;
         List<String> in = new ArrayList<>();
         Observable observable = Observable.from(in)
                 .observeOn(Schedulers.computation())
@@ -30,8 +29,8 @@ public class TestRxTask implements UseCase{
         observable.subscribe(new Action1() {
             @Override
             public void call(Object o) {
-                if(mResultCallback != null) {
-                    mResultCallback.onResult(o);
+                if(mCallback != null) {
+                    mCallback.onSuccess(o);
                 }
             }
         }, new Action1<Throwable>() {
@@ -43,16 +42,22 @@ public class TestRxTask implements UseCase{
     }
 
     @Override
-    public void stop() {
-
+    public Request getRequest() {
+        return mRequest;
     }
 
     @Override
-    public void cancel() {
-
+    public Response getResponse() {
+        return mResponse;
     }
 
-    public static interface ResultCallBack<M> {
-        public void onResult(M result);
+    @Override
+    public void setCallback(Callback callback) {
+        this.mCallback = callback;
+    }
+
+    @Override
+    public Callback getCallback() {
+        return mCallback;
     }
 }
