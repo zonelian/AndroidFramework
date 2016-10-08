@@ -1,34 +1,70 @@
 package com.zonelian.framework.base.adapter.recycler;
 
 import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.zonelian.framework.base.view.ViewFinderDelegate;
 
 /**
  * Created by kernel on 16/6/19.
  * Email: 372786297@qq.com
  */
-public class RecyclerViewHolder extends RecyclerView.ViewHolder{
-    private SparseArray<View> childViews;
+public abstract class RecyclerViewHolder extends RecyclerView.ViewHolder{
+//    private SparseArray<View> childViews;
+    private ViewFinderDelegate mViewFinderDelegate;
+    private boolean isCustomClick = false;
+    private int customeClickViewId = 0;
 
     public RecyclerViewHolder(View itemView) {
         super(itemView);
-        childViews = new SparseArray<>();
+        mViewFinderDelegate = new ViewFinderDelegate();
+        mViewFinderDelegate.register(this.itemView);
     }
 
-    public RecyclerViewHolder(LayoutInflater layoutInflater, @LayoutRes int layoutResId) {
-        this(layoutInflater.inflate(layoutResId, null));
+    public RecyclerViewHolder(ViewGroup parent, int layoutResId) {
+        this(LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent, false));
+    }
+
+    public boolean isCustomClick() {
+        return isCustomClick;
+    }
+
+    public void setCustomClick(boolean customClick) {
+        isCustomClick = customClick;
+    }
+
+    public int getCustomeClickViewId() {
+        return customeClickViewId;
+    }
+
+    public void setCustomeClickViewId(int customeClickViewId) {
+        this.customeClickViewId = customeClickViewId;
     }
 
     public <V extends View> V getView(@IdRes int viewId) {
-        if(childViews.get(viewId) != null) {
-            return (V)childViews.get(viewId);
-        }
-        View child = itemView.findViewById(viewId);
-        childViews.put(viewId, child);
-        return (V)child;
+        return mViewFinderDelegate.get(viewId);
+    }
+
+    public TextView getTextView(int id) {
+        return mViewFinderDelegate.getTextView(id);
+    }
+
+    public EditText getEditText(int id) {
+        return mViewFinderDelegate.getEditText(id);
+    }
+
+    public ImageView getImageView(int id) {
+        return mViewFinderDelegate.getImageView(id);
+    }
+
+    public Button getButton(int id) {
+        return mViewFinderDelegate.getButton(id);
     }
 }

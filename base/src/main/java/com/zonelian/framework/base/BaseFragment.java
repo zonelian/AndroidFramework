@@ -1,27 +1,34 @@
 package com.zonelian.framework.base;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.zonelian.framework.base.view.ViewFinderDelegate;
 
 /**
  * Created by kernel on 16/6/13.
  * Email: 372786297@qq.com
  */
 public abstract class BaseFragment extends Fragment{
-    private SparseArray<View> mChildViews;
     private View mView;
+    private ViewFinderDelegate mViewFinderDeleage;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mChildViews = new SparseArray<>();
-        mView = inflater.inflate(initLaoyout(), null);
+        mView = inflater.inflate(initLayout(), null);
+        mViewFinderDeleage = new ViewFinderDelegate();
+        mViewFinderDeleage.register(mView);
         initView();
         return mView;
     }
@@ -32,26 +39,40 @@ public abstract class BaseFragment extends Fragment{
         initData();
     }
 
-    public <V extends View> V getViewById(int id) {
-        View view = mChildViews.get(id);
-        if(view == null) {
-            view = mView.findViewById(id);
-            mChildViews.put(id, view);
+    public final  <V extends View> V getViewById(@IdRes int id) {
+        return mViewFinderDeleage.get(id);
+    }
+
+    public TextView getTextViewById(@IdRes int id) {
+        return mViewFinderDeleage.getTextView(id);
+    }
+
+    public EditText getEditTextById(@IdRes int id) {
+        return mViewFinderDeleage.getEditText(id);
+    }
+
+    public ImageView getImageViewById(@IdRes int id) {
+        return mViewFinderDeleage.getImageView(id);
+    }
+
+    public Button getButtonById(@IdRes int id) {
+        return mViewFinderDeleage.getButton(id);
+    }
+
+    public final void setOnClickListener(View.OnClickListener listener, @IdRes int... viewIds) {
+        for(int viewId : viewIds) {
+            getViewById(viewId).setOnClickListener(listener);
         }
-        return (V)view;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbindView();
+        mViewFinderDeleage.unregister();
+        mView = null;
     }
 
-    private void unbindView() {
-        mChildViews.clear();
-    }
-
-    public abstract int initLaoyout();
+    public abstract int initLayout();
     public abstract void initView();
     public abstract void initData();
 

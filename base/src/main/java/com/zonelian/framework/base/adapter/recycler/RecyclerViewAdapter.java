@@ -1,17 +1,19 @@
 package com.zonelian.framework.base.adapter.recycler;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kernel on 16/6/19.
  * Email: 372786297@qq.com
  */
 public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private SparseArray<ExtraItemView> mHeaders;
-    private SparseArray<ExtraItemView> mFooters;
+    private List<ExtraItemView> mHeaders;
+    private List<ExtraItemView> mFooters;
     private int mHeaderCount = 0;
     private int mFooterCount = 0;
 
@@ -19,45 +21,55 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
     public int getItemCount() {
         int headerCount = mHeaders != null ? mHeaders.size() : 0;
         int footerCount = mFooters != null ? mFooters.size() : 0;
-        return headerCount + footerCount + getContentItemCount();
+        int temp = headerCount + footerCount + getContentItemCount();
+        return temp;
     }
 
     @Override
     public int getItemViewType(int position) {
+        int temp = getContentItemCount();
         if(position < mHeaderCount) {
-            return mHeaders.indexOfKey(position);
-        }else if(position < mHeaderCount + getContentItemCount()) {
-            return getContentItemViewType(position - mHeaderCount);
+            return mHeaders.get(position).viewType;
+        }else if(position < mHeaderCount + temp) {
+            return getContentViewType(position - mHeaderCount);
         }else {
-            return mFooters.indexOfKey(position - mHeaderCount - getContentItemCount());
+            return mFooters.get(position - mHeaderCount - temp).viewType;
         }
     }
 
-    public abstract int getContentItemViewType(int position);
+    public abstract int getContentViewType(int position);
 
     public abstract int getContentItemCount();
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(mHeaders != null && mHeaders.indexOfKey(viewType) >= 0) {
-            return mHeaders.get(viewType).viewHolder;
+        if(mHeaders != null && mHeaders.size() > 0) {
+            for(ExtraItemView header : mHeaders) {
+                if(header.viewType == viewType) {
+                    return header.viewHolder;
+                }
+            }
         }
-        if(mFooters != null && mFooters.indexOfKey(viewType) >= 0) {
-            return mFooters.get(viewType).viewHolder;
+        if(mFooters != null && mFooters.size() > 0) {
+            for(ExtraItemView footer : mFooters) {
+                if(footer.viewType == viewType) {
+                    return footer.viewHolder;
+                }
+            }
         }
-        return onCreateItemViewHolder(parent, viewType);
+        return onCreateContentViewHolder(parent, viewType);
     }
 
-    public abstract V onCreateItemViewHolder(ViewGroup parent, int viewType);
+    public abstract V onCreateContentViewHolder(ViewGroup parent, int viewType);
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if(position >= mHeaderCount && position < mHeaderCount + getContentItemCount()) {
-            onBindItemViewHolder((V)holder, position - mHeaderCount);
+            onBindContentViewHolder((V)holder, position - mHeaderCount);
         }
     }
 
-    public abstract void onBindItemViewHolder(V holder, int position);
+    public abstract void onBindContentViewHolder(V holder, int position);
 
     private int getHeaderCount() {
         return mHeaderCount;
@@ -67,11 +79,25 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         return mFooterCount;
     }
 
-    public void addHeader(int type, View view) {
-        if(mHeaders == null) {
-            mHeaders = new SparseArray<>();
+    public void addHeader(int type, View view) throws ExtraItemTypeDuplicateException{
+        if(mHeaders != null) {
+            for(ExtraItemView header : mHeaders) {
+                if(header.viewType == type) {
+                    throw new ExtraItemTypeDuplicateException("type 与已存在的Header的type重复");
+                }
+            }
         }
-        mHeaders.put(type, new ExtraItemView(view));
+        if(mFooters != null) {
+            for(ExtraItemView footer : mFooters) {
+                if(footer.viewType == type) {
+                    throw new ExtraItemTypeDuplicateException("type 与已存在的Footer的type重复");
+                }
+            }
+        }
+        if(mHeaders == null) {
+            mHeaders = new ArrayList<>();
+        }
+        mHeaders.add(new ExtraItemView(view, type));
         mHeaderCount = mHeaders.size();
         notifyDataSetChanged();
     }
@@ -80,23 +106,47 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         if(mHeaders == null) {
             return;
         }
-        mHeaders.remove(type);
-        mHeaderCount = mHeaders.size();
-        notifyDataSetChanged();
+        for(int i = 0, len = mHeaders.size(); i < len; i ++) {
+            if(mHeaders.get(i).viewType == type) {
+                mHeaders.remove(i);
+                mHeaderCount --;
+                notifyDataSetChanged();
+                break;
+            }
+        }
     }
 
     public boolean hasHeader(int type) {
         if(mHeaders == null) {
             return false;
         }
-        return mHeaders.indexOfKey(type) >= 0;
+        for(ExtraItemView header : mHeaders) {
+            if(header.viewType == type) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void addFooter(int type, View view) {
-        if(mFooters == null) {
-            mFooters = new SparseArray<>();
+    public void addFooter(int type, View view) throws ExtraItemTypeDuplicateException{
+        if(mHeaders != null) {
+            for(ExtraItemView header : mHeaders) {
+                if(header.viewType == type) {
+                    throw new ExtraItemTypeDuplicateException("type 与已存在的Header的type重复");
+                }
+            }
         }
-        mFooters.put(type, new ExtraItemView(view));
+        if(mFooters != null) {
+            for(ExtraItemView footer : mFooters) {
+                if(footer.viewType == type) {
+                    throw new ExtraItemTypeDuplicateException("type 与已存在的Footer的type重复");
+                }
+            }
+        }
+        if(mFooters == null) {
+            mFooters = new ArrayList<>();
+        }
+        mFooters.add(new ExtraItemView(view, type));
         mFooterCount = mFooters.size();
         notifyDataSetChanged();
     }
@@ -105,8 +155,13 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         if(mFooters == null) {
             return;
         }
-        mFooters.remove(type);
-        mFooterCount = mFooters.size();
+        for(int i = 0, len = mFooters.size(); i < len; i ++) {
+            if(mFooters.get(i).viewType == type) {
+                mFooters.remove(i);
+                mFooterCount --;
+                break;
+            }
+        }
         notifyDataSetChanged();
     }
 
@@ -114,15 +169,22 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         if(mFooters == null) {
             return false;
         }
-        return mFooters.indexOfKey(type) >= 0;
+        for(ExtraItemView item : mFooters) {
+            if(item.viewType == type) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public class ExtraItemView {
         public RecyclerView.ViewHolder viewHolder;
+        public int viewType = 0;
 
-        public ExtraItemView(View content) {
+        public ExtraItemView(View content, int viewType) {
             viewHolder = new RecyclerView.ViewHolder(content) {
             };
+            this.viewType = viewType;
         }
     }
 }

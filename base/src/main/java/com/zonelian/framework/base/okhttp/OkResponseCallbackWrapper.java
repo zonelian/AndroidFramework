@@ -15,8 +15,8 @@ import okhttp3.Response;
  */
 public class OkResponseCallbackWrapper {
     protected Callback mCallback;
-    private OkHttpResponseParser mResponseParser;
-    private OkHttpResultCallback mResultCallback;
+    private HttpResponseParser mResponseParser;
+    private HttpResultCallback mResultCallback;
     protected long mStartTime = 0L;
     protected long mTimeout;
     private Class mBeanClass;
@@ -117,8 +117,8 @@ public class OkResponseCallbackWrapper {
     }
 
     public static class Builder {
-        private OkHttpResponseParser responseParser;
-        private OkHttpResultCallback resultCallback;
+        private HttpResponseParser responseParser;
+        private HttpResultCallback resultCallback;
         private Class beanClass;
         private long timeout;
 
@@ -126,12 +126,12 @@ public class OkResponseCallbackWrapper {
         public Builder() {
         }
 
-        public Builder responseParser(OkHttpResponseParser parser) {
+        public Builder responseParser(HttpResponseParser parser) {
             responseParser = parser;
             return this;
         }
 
-        public Builder resultCallback(OkHttpResultCallback callback) {
+        public Builder resultCallback(HttpResultCallback callback) {
             resultCallback = callback;
             return this;
         }
