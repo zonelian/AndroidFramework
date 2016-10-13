@@ -21,6 +21,10 @@ public abstract class MVPFragment<T extends IFragmentPresenter> extends BaseFrag
         super.onCreate(savedInstanceState);
     }
 
+    public T getPresenter() {
+        return mPresenter;
+    }
+
     public abstract T createPresenter();
 
     public abstract void initPresenter(T presenter);
