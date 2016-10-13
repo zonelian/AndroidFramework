@@ -14,10 +14,11 @@ import okhttp3.internal.Util;
  * Created by kernel on 16/9/18.
  * Email: 372786297@qq.com
  */
+@Deprecated
 public class OkPrirotyClient {
 
-    public OkHttpClient get() {
-        ExecutorService executorService = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60, TimeUnit.SECONDS,
+    public static OkHttpClient get() {
+        ExecutorService executorService = new ThreadPoolExecutor(2, 14, 60, TimeUnit.SECONDS,
                 new PriorityBlockingQueue(60, new PriorityCallComparator<Runnable>()),
                 Util.threadFactory("OkHttp Dispatcher", false));
         Dispatcher dispatcher = new Dispatcher(executorService);

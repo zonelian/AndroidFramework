@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 23
@@ -34,12 +33,8 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-//    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile project(':mvp')
-//    compile 'io.reactivex:rxjava:1.1.5'
-//    compile 'io.reactivex:rxandroid:1.2.0'
+    //    compile 'com.android.support:appcompat-v7:23.3.0'
+    //    compile 'io.reactivex:rxjava:1.1.5'
+    //    compile 'io.reactivex:rxandroid:1.2.0'
     compile project(':base')
-    compile 'com.google.dagger:dagger:2.2'
-    compile 'com.google.dagger:dagger-compiler:2.2'
-    compile 'com.google.dagger:dagger-producers:2.2'
 }

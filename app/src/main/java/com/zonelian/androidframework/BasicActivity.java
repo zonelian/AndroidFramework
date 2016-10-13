@@ -1,6 +1,5 @@
 package com.zonelian.androidframework;
 
-import com.zonelian.androidframework.component.AppComponent;
 import com.zonelian.framework.base.BaseActivity;
 
 /**
@@ -9,7 +8,4 @@ import com.zonelian.framework.base.BaseActivity;
  */
 public abstract class BasicActivity extends BaseActivity{
 
-    public AppComponent getAppComponent() {
-        return ((App)getApplication()).getAppComponent();
-    }
 }

@@ -7,14 +7,22 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.ClipboardManager;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.hardware.display.DisplayManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
+import com.zonelian.framework.base.okhttp.OkPrirotyClient;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
+import okhttp3.OkRequestBuilder;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Created by kernel on 16/7/3.
@@ -25,9 +33,6 @@ public class App extends Application{
     private SharedPreferences mSharePreferencesGlobal;
     private static App sInstance;
 
-//    private AppComponent mAppComponent;
-//    @Inject  AppRepository mRepository;
-
     public static final App getInstance(){
         return sInstance;
     }
@@ -35,33 +40,65 @@ public class App extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-//        initInject();
         sInstance = this;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Bitmap bmJpg = BitmapFactory.decodeResource(getResources(), R.mipmap.bg_login_1230);
-                Bitmap bmPng = BitmapFactory.decodeResource(getResources(), R.mipmap.img_guide_third);
-                long jpgSize = bmJpg.getByteCount();
-                long pngSize = bmPng.getByteCount();
-            }
-        }).start();
+        test();
     }
 
-//    private void initInject() {
-//        mAppComponent = DaggerAppComponent.builder()
-//                .appRepositoryComponent(DaggerAppRepositoryComponent.builder().build())
-//                .build();
-//        mAppComponent.inject(this);
-//    }
+    private void test() {
+        OkHttpClient client = OkPrirotyClient.get();
+        for(int i = 0; i < 10; i ++) {
+            Request request = new OkRequestBuilder().setPriority(i)
+                    .url("https://www.baidu.com").get().build();
+            Call call = client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    try {
+                        Thread.sleep(5000);
+                    }catch (InterruptedException ee) {
+                        ee.printStackTrace();
+                    }
+                    Log.d("wuzhimu", "background failure");
+                }
 
-//    public AppComponent getAppComponent() {
-//        return mAppComponent;
-//    }
-//
-//    public AppRepository getRepository() {
-//        return mRepository;
-//    }
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        Thread.sleep(5000);
+                    }catch (InterruptedException ee) {
+                        ee.printStackTrace();
+                    }
+                    Log.d("wuzhimu", "background response");
+                }
+            });
+        }
+        for(int i = 0; i < 10; i ++) {
+            Request request = new OkRequestBuilder().setPriority(10 + i)
+                    .url("https://www.baidu.com").get().build();
+            Call call = client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    try {
+                        Thread.sleep(5000);
+                    }catch (InterruptedException ee) {
+                        ee.printStackTrace();
+                    }
+                    Log.d("wuzhimu", "foreground failure");
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    try {
+                        Thread.sleep(5000);
+                    }catch (InterruptedException ee) {
+                        ee.printStackTrace();
+                    }
+                    Log.d("wuzhimu", "foreground response");
+                }
+            });
+        }
+    }
 
     public OkHttpClient getOkHttpClient() {
         if(mOkHttpClientGlobal == null) {
