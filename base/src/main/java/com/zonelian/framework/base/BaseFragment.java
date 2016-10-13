@@ -20,15 +20,15 @@ import com.zonelian.framework.base.view.ViewFinderDelegate;
  */
 public abstract class BaseFragment extends Fragment{
     private View mView;
-    private ViewFinderDelegate mViewFinderDeleage;
+    private ViewFinderDelegate mViewFinderDelegete;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(initLayout(), null);
-        mViewFinderDeleage = new ViewFinderDelegate();
-        mViewFinderDeleage.register(mView);
+        mViewFinderDelegete = new ViewFinderDelegate();
+        mViewFinderDelegete.register(mView);
         initView();
         return mView;
     }
@@ -40,23 +40,23 @@ public abstract class BaseFragment extends Fragment{
     }
 
     public final  <V extends View> V getViewById(@IdRes int id) {
-        return mViewFinderDeleage.get(id);
+        return mViewFinderDelegete.get(id);
     }
 
     public TextView getTextViewById(@IdRes int id) {
-        return mViewFinderDeleage.getTextView(id);
+        return mViewFinderDelegete.getTextView(id);
     }
 
     public EditText getEditTextById(@IdRes int id) {
-        return mViewFinderDeleage.getEditText(id);
+        return mViewFinderDelegete.getEditText(id);
     }
 
     public ImageView getImageViewById(@IdRes int id) {
-        return mViewFinderDeleage.getImageView(id);
+        return mViewFinderDelegete.getImageView(id);
     }
 
     public Button getButtonById(@IdRes int id) {
-        return mViewFinderDeleage.getButton(id);
+        return mViewFinderDelegete.getButton(id);
     }
 
     public final void setOnClickListener(View.OnClickListener listener, @IdRes int... viewIds) {
@@ -68,7 +68,7 @@ public abstract class BaseFragment extends Fragment{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mViewFinderDeleage.unregister();
+        mViewFinderDelegete.unregister();
         mView = null;
     }
 

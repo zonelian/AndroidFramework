@@ -17,14 +17,14 @@ import com.zonelian.framework.base.view.ViewFinderDelegate;
  * Email: 372786297@qq.com
  */
 public abstract class BaseActivity extends FragmentActivity{
-    private ViewFinderDelegate mViewFinderDeleage;
+    private ViewFinderDelegate mViewFinderDelegete;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewFinderDeleage = new ViewFinderDelegate();
+        mViewFinderDelegete = new ViewFinderDelegate();
         setContentView(initLayout());
-        mViewFinderDeleage.register(getWindow().getDecorView());
+        mViewFinderDelegete.register(getWindow().getDecorView());
         initView();
         initData();
     }
@@ -32,27 +32,27 @@ public abstract class BaseActivity extends FragmentActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mViewFinderDeleage.unregister();
+        mViewFinderDelegete.unregister();
     }
 
     public final  <V extends View> V getViewById(@IdRes int id) {
-        return mViewFinderDeleage.get(id);
+        return mViewFinderDelegete.get(id);
     }
 
     public TextView getTextViewById(@IdRes int id) {
-        return mViewFinderDeleage.getTextView(id);
+        return mViewFinderDelegete.getTextView(id);
     }
 
     public EditText getEditTextById(@IdRes int id) {
-        return mViewFinderDeleage.getEditText(id);
+        return mViewFinderDelegete.getEditText(id);
     }
 
     public ImageView getImageViewById(@IdRes int id) {
-        return mViewFinderDeleage.getImageView(id);
+        return mViewFinderDelegete.getImageView(id);
     }
 
     public Button getButtonById(@IdRes int id) {
-        return mViewFinderDeleage.getButton(id);
+        return mViewFinderDelegete.getButton(id);
     }
 
     public final void setOnClickListener(View.OnClickListener listener, @IdRes int... viewIds) {
