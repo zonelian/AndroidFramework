@@ -1,1 +1,1 @@
-include ':app', ':mvp', ':base', ':data', ':widget', ':domain'
+include ':app', ':mvp', ':base', ':data', ':widget', ':domain', ':asynctask'

@@ -10,19 +10,21 @@ import android.content.SharedPreferences;
 import android.hardware.display.DisplayManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
-import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
-import com.zonelian.framework.base.okhttp.OkPrirotyClient;
+import com.zonelian.framework.async.base.AsyncTask;
+import com.zonelian.framework.async.core.Task;
+import com.zonelian.framework.async.core.TaskCompleteAction;
+import com.zonelian.framework.async.core.TaskErrorAction;
+import com.zonelian.framework.async.core.TaskExecutor;
+import com.zonelian.framework.base.utils.HandlerUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
-import okhttp3.OkRequestBuilder;
 import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * Created by kernel on 16/7/3.
@@ -32,6 +34,8 @@ public class App extends Application{
     private OkHttpClient mOkHttpClientGlobal;
     private SharedPreferences mSharePreferencesGlobal;
     private static App sInstance;
+
+    private List<AsyncTask> tasks;
 
     public static final App getInstance(){
         return sInstance;
@@ -45,59 +49,46 @@ public class App extends Application{
     }
 
     private void test() {
-        OkHttpClient client = OkPrirotyClient.get();
-        for(int i = 0; i < 10; i ++) {
-            Request request = new OkRequestBuilder().setPriority(i)
-                    .url("https://www.baidu.com").get().build();
-            Call call = client.newCall(request);
-            call.enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    try {
-                        Thread.sleep(5000);
-                    }catch (InterruptedException ee) {
-                        ee.printStackTrace();
-                    }
-                    Log.d("wuzhimu", "background failure");
-                }
+        tasks = new ArrayList<>();
+        for(int i = 0; i < 15 ; i ++) {
+            AsyncTask task = new AsyncTask.Builder()
+                    .execute(new TaskExecutor<Boolean>() {
+                        @Override
+                        public Boolean execute(Task.Request request) {
+                            Request r = new Request.Builder().url("https://www.baidu.com").build();
+                            try {
+                                getOkHttpClient().newCall(r).execute();
+                            }catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            return true;
+                        }
+                    })
+                    .complete(new TaskCompleteAction<Boolean>() {
+                        @Override
+                        public void action(Task task, Boolean output) {
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    try {
-                        Thread.sleep(5000);
-                    }catch (InterruptedException ee) {
-                        ee.printStackTrace();
-                    }
-                    Log.d("wuzhimu", "background response");
-                }
-            });
-        }
-        for(int i = 0; i < 10; i ++) {
-            Request request = new OkRequestBuilder().setPriority(10 + i)
-                    .url("https://www.baidu.com").get().build();
-            Call call = client.newCall(request);
-            call.enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    try {
-                        Thread.sleep(5000);
-                    }catch (InterruptedException ee) {
-                        ee.printStackTrace();
-                    }
-                    Log.d("wuzhimu", "foreground failure");
-                }
+                        }
+                    })
+                    .error(new TaskErrorAction() {
+                        @Override
+                        public void action(Task task, Exception exception) {
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    try {
-                        Thread.sleep(5000);
-                    }catch (InterruptedException ee) {
-                        ee.printStackTrace();
-                    }
-                    Log.d("wuzhimu", "foreground response");
-                }
-            });
+                        }
+                    })
+                    .consumePerformance(Task.Request.CONSUME_CPU)
+                    .build();
+            task.submit();
+            tasks.add(task);
         }
+        HandlerUtil.runDelay(new Runnable() {
+            @Override
+            public void run() {
+                tasks.get(0).cancle();
+                tasks.get(8).cancle();
+                tasks.get(9).cancle();
+            }
+        }, 5000);
     }
 
     public OkHttpClient getOkHttpClient() {
