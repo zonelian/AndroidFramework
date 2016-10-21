@@ -25,6 +25,11 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         return temp;
     }
 
+    /**
+     *
+     * @param position
+     * @return must not smaller than 0
+     */
     @Override
     public int getItemViewType(int position) {
         int temp = getContentItemCount();
@@ -79,7 +84,46 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         return mFooterCount;
     }
 
-    public void addHeader(int type, View view) throws ExtraItemTypeDuplicateException{
+    public boolean addHeader(int type, View view, int position) throws ExtraItemTypeDuplicateException, ViewTypeException{
+        if(type >= 0) {
+            throw new ViewTypeException("the type must smaller than 0");
+        }
+        if(position < 0) {
+            return false;
+        }
+        if(mHeaders != null && mHeaders.size() <= position) {
+            return false;
+        }
+        if(mHeaders != null) {
+            for(ExtraItemView header : mHeaders) {
+                if(header.viewType == type) {
+                    throw new ExtraItemTypeDuplicateException("type 与已存在的Header的type重复");
+                }
+            }
+        }
+        if(mFooters != null) {
+            for(ExtraItemView footer : mFooters) {
+                if(footer.viewType == type) {
+                    throw new ExtraItemTypeDuplicateException("type 与已存在的Footer的type重复");
+                }
+            }
+        }
+        if(mHeaders == null) {
+            mHeaders = new ArrayList<>();
+            if(position > 0 || position < 0) {
+                return false;
+            }
+        }
+        mHeaders.add(position, new ExtraItemView(view, type));
+        mHeaderCount = mHeaders.size();
+        notifyDataSetChanged();
+        return true;
+    }
+
+    public void addHeader(int type, View view) throws ExtraItemTypeDuplicateException, ViewTypeException{
+        if(type >= 0) {
+            throw new ViewTypeException("the type must smaller than 0");
+        }
         if(mHeaders != null) {
             for(ExtraItemView header : mHeaders) {
                 if(header.viewType == type) {
@@ -128,7 +172,10 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         return false;
     }
 
-    public void addFooter(int type, View view) throws ExtraItemTypeDuplicateException{
+    public void addFooter(int type, View view) throws ExtraItemTypeDuplicateException, ViewTypeException{
+        if(type >= 0) {
+            throw new ViewTypeException("the type must smaller than 0");
+        }
         if(mHeaders != null) {
             for(ExtraItemView header : mHeaders) {
                 if(header.viewType == type) {

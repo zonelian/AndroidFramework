@@ -1,5 +1,7 @@
 package com.zonelian.framework.async.base;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.zonelian.framework.async.core.Dispatcher;
@@ -26,10 +28,13 @@ public class DefaultDispacher implements Dispatcher {
 
     private ConcurrentMap<Task, Future> mSubmiteds;
 
+    private Handler mMainHandler;
+
     public DefaultDispacher() {
         mScheduledExecutorService = Executors.newScheduledThreadPool(CPU_AVALABLE_COUNT);
         mCacheExecutorService = Executors.newCachedThreadPool();
         mSubmiteds = new ConcurrentHashMap<>();
+        mMainHandler = new android.os.Handler(Looper.getMainLooper());
         Log.d(TAG, "cpu_avalable_count:" + CPU_AVALABLE_COUNT);
     }
 
@@ -63,12 +68,19 @@ public class DefaultDispacher implements Dispatcher {
         }
         onTaskComplete(task);
         if(task.getCompleteAction() != null) {
-            task.getCompleteAction().action(task, task.getResponse().response());
+            if(mMainHandler != null) {
+                mMainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        task.getCompleteAction().action(task, task.getResponse().response());
+                    }
+                });
+            }
         }
     }
 
     @Override
-    public void errorDispatch(Task task, Exception exception) {
+    public void errorDispatch(final Task task, final Exception exception) {
         Log.d(TAG, "errorDispatch");
         if(task.isCancled() || task.getRequest().isDone()) {
             Log.d(TAG, "errorDispatch isCancled or isDone");
@@ -76,7 +88,14 @@ public class DefaultDispacher implements Dispatcher {
         }
         onTaskComplete(task);
         if(task.getErrorAction() != null) {
-            task.getErrorAction().action(task, exception);
+            if(mMainHandler != null) {
+                mMainHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        task.getErrorAction().action(task, exception);
+                    }
+                });
+            }
         }
     }
 

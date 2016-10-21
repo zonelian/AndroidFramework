@@ -49,6 +49,7 @@ public class App extends Application{
     }
 
     private void test() {
+
         tasks = new ArrayList<>();
         for(int i = 0; i < 15 ; i ++) {
             AsyncTask task = new AsyncTask.Builder()
@@ -93,7 +94,8 @@ public class App extends Application{
 
     public OkHttpClient getOkHttpClient() {
         if(mOkHttpClientGlobal == null) {
-            mOkHttpClientGlobal = new OkHttpClient.Builder().build();
+            mOkHttpClientGlobal = new OkHttpClient.Builder()
+                    .build();
         }
         return mOkHttpClientGlobal;
     }
