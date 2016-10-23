@@ -2,7 +2,7 @@ package com.zonelian.androidframework;
 
 import android.support.annotation.StringRes;
 
-import com.zonelian.framework.extend.MVPActivity;
+import com.zonelian.framework.base.MVPActivity;
 
 /**
  * Created by kernel on 2016/10/8.
