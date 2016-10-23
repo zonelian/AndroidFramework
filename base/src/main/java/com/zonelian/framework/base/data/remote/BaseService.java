@@ -13,7 +13,7 @@ import rx.schedulers.Schedulers;
  * Email: 372786297@qq.com
  */
 
-public abstract class BaseServer {
+public abstract class BaseService {
     private Retrofit mRetrofit;
 
     public OkHttpClient getOkHttpClient() {
