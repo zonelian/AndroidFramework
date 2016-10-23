@@ -1,4 +1,4 @@
-package com.zonelian.framework.base.utils;
+package com.zonelian.framework.core.utils;
 
 import android.os.Looper;
 

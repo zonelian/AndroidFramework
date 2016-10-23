@@ -1,4 +1,4 @@
-package com.zonelian.framework.base.adapter.recycler;
+package com.zonelian.framework.core.adapter.recycler;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -25,11 +25,6 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         return temp;
     }
 
-    /**
-     *
-     * @param position
-     * @return must not smaller than 0
-     */
     @Override
     public int getItemViewType(int position) {
         int temp = getContentItemCount();
@@ -42,6 +37,11 @@ public abstract class RecyclerViewAdapter<V extends RecyclerView.ViewHolder> ext
         }
     }
 
+    /**
+     *
+     * @param position
+     * @return must not smaller than 0
+     */
     public abstract int getContentViewType(int position);
 
     public abstract int getContentItemCount();

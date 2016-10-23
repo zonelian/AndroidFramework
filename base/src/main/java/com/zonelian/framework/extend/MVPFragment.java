@@ -3,7 +3,7 @@ package com.zonelian.framework.extend;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zonelian.framework.base.BaseFragment;
+import com.zonelian.framework.core.BaseFragment;
 import com.zonelian.framework.mvp.extend.IFragmentPresenter;
 
 /**

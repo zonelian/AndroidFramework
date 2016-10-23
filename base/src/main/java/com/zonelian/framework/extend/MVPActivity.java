@@ -3,7 +3,7 @@ package com.zonelian.framework.extend;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zonelian.framework.base.BaseActivity;
+import com.zonelian.framework.core.BaseActivity;
 import com.zonelian.framework.mvp.extend.IActivityPresenter;
 
 /**

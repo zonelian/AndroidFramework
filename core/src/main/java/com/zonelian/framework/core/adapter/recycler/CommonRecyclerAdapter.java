@@ -1,4 +1,4 @@
-package com.zonelian.framework.base.adapter.recycler;
+package com.zonelian.framework.core.adapter.recycler;
 
 import android.view.ViewGroup;
 

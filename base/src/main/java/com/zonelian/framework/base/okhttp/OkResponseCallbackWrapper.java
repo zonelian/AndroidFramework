@@ -54,6 +54,7 @@ public class OkResponseCallbackWrapper {
                 }
             }
         };
+        mStartTime = System.nanoTime();
         return mCallback;
     }
 
@@ -151,7 +152,6 @@ public class OkResponseCallbackWrapper {
             wrapper.mBeanClass = beanClass;
             wrapper.mResponseParser = responseParser;
             wrapper.mResultCallback = resultCallback;
-            wrapper.mStartTime = System.nanoTime();
             wrapper.mTimeout = timeout;
             return wrapper;
         }

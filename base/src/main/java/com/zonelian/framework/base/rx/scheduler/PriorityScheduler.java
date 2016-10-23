@@ -12,6 +12,7 @@ import rx.internal.schedulers.SchedulerLifecycle;
  * Created by kernel on 16/9/7.
  * Email: 372786297@qq.com
  */
+@Deprecated
 public class PriorityScheduler extends Scheduler implements SchedulerLifecycle{
     private ThreadFactory threadFactory;
 

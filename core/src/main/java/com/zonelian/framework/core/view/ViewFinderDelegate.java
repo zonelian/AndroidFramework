@@ -1,4 +1,4 @@
-package com.zonelian.framework.base.view;
+package com.zonelian.framework.core.view;
 
 import android.support.annotation.IdRes;
 import android.util.SparseArray;
