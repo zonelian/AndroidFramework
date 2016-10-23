@@ -1,21 +1,21 @@
-package com.zonelian.framework.extend;
+package com.zonelian.framework.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.zonelian.framework.core.BaseFragment;
-import com.zonelian.framework.mvp.extend.IFragmentPresenter;
+import com.zonelian.framework.core.BaseActivity;
+import com.zonelian.framework.mvp.extend.IActivityPresenter;
 
 /**
  * Created by kernel on 2016/10/13.
  * Email: 372786297@qq.com
  */
 
-public abstract class MVPFragment<T extends IFragmentPresenter> extends BaseFragment {
+public abstract class MVPActivity<T extends IActivityPresenter> extends BaseActivity {
     private T mPresenter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         mPresenter = createPresenter();
         initPresenter(mPresenter);
         super.onCreate(savedInstanceState);
