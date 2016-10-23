@@ -33,6 +33,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile rootProject.ext.dependencies["junit"]
+    compile rootProject.ext.dependencies["logging-okhttp3"]
+    compile rootProject.ext.dependencies["retrofit-gson"]
+    compile rootProject.ext.dependencies["retrofit_rxjava"]
 
     compile project(':base')
     compile project(':asynctask')
