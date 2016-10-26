@@ -3,7 +3,7 @@ asynctask:
 替代系统AsyncTask的异步任务库
 
 data:
-数据库层
+数据层
 
 domain:
 用例层（任务抽象接口）
