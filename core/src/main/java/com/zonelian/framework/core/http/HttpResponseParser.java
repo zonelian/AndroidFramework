@@ -1,4 +1,4 @@
-package com.zonelian.framework.base.okhttp;
+package com.zonelian.framework.core.http;
 
 /**
  * Created by kernel on 16/6/19.

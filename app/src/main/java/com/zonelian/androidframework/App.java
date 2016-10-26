@@ -1,17 +1,17 @@
 package com.zonelian.androidframework;
 
 import android.app.Application;
-import android.content.SharedPreferences;
 
-import com.zonelian.androidframework.server.RemoteDataLayer;
+import com.zonelian.androidframework.data.GrobalRemoteDataLater;
+import com.zonelian.framework.data.cache.SharePreferencesHelper;
 
 /**
  * Created by kernel on 16/7/3.
  * Email: 372786297@qq.com
  */
 public class App extends Application{
-    private SharedPreferences mSharePreferencesGlobal;
-    private RemoteDataLayer mRemoteDataLater;
+    private GrobalRemoteDataLater mRemoteDataLater;
+    private SharePreferencesHelper mSharePrefHelper;
     private static App sInstance;
 
     public static final App getInstance(){
@@ -22,19 +22,15 @@ public class App extends Application{
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        mRemoteDataLater = new GrobalRemoteDataLater();
+        mSharePrefHelper = new SharePreferencesHelper(sInstance, "Application");
     }
 
-    private void test() {
+    public GrobalRemoteDataLater getRemoteDataLater() {
+        return mRemoteDataLater;
     }
 
-    public SharedPreferences getSharedPreferences() {
-        if(mSharePreferencesGlobal == null) {
-            mSharePreferencesGlobal = getSharedPreferences("Application", MODE_PRIVATE);
-        }
-        return mSharePreferencesGlobal;
-    }
-
-    public SharedPreferences getSharePreferences(String name) {
-        return getSharedPreferences(name, MODE_PRIVATE);
+    public SharePreferencesHelper getSharePrefeHelper() {
+        return mSharePrefHelper;
     }
 }

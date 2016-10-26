@@ -23,7 +23,7 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
 
     @Override
     public int initLayout() {
-        return 0;
+        return R.layout.activity_main;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
 
     @Override
     public void initData() {
-
+        getPresenter().initData();
     }
 
     @Override
@@ -44,5 +44,11 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
     @Override
     public void showToast(@StringRes int resId) {
 
+    }
+
+    @Override
+    public void showData(String name, int age) {
+        getTextViewById(R.id.tvName).setText(name);
+        getTextViewById(R.id.tvAge).setText("" + age);
     }
 }

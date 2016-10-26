@@ -13,4 +13,5 @@ public interface MainView extends MVP.MVPView {
     void showToast(@StringRes int resId);
     void showToast(String msg);
 
+    void showData(String name, int age);
 }

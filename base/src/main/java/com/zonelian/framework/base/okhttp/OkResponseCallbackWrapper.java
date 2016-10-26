@@ -3,6 +3,9 @@ package com.zonelian.framework.base.okhttp;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.zonelian.framework.core.http.HttpResponseParser;
+import com.zonelian.framework.core.http.Result;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -16,7 +19,7 @@ import okhttp3.Response;
 public class OkResponseCallbackWrapper {
     protected Callback mCallback;
     private HttpResponseParser mResponseParser;
-    private HttpResultCallback mResultCallback;
+    private OkHttpResultCallback mResultCallback;
     protected long mStartTime = 0L;
     protected long mTimeout;
     private Class mBeanClass;
@@ -119,7 +122,7 @@ public class OkResponseCallbackWrapper {
 
     public static class Builder {
         private HttpResponseParser responseParser;
-        private HttpResultCallback resultCallback;
+        private OkHttpResultCallback resultCallback;
         private Class beanClass;
         private long timeout;
 
@@ -132,7 +135,7 @@ public class OkResponseCallbackWrapper {
             return this;
         }
 
-        public Builder resultCallback(HttpResultCallback callback) {
+        public Builder resultCallback(OkHttpResultCallback callback) {
             resultCallback = callback;
             return this;
         }

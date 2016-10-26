@@ -2,6 +2,10 @@ package com.zonelian.framework.base.data.remote;
 
 import android.support.annotation.NonNull;
 
+import com.zonelian.framework.core.http.UrlBuilder;
+
+import java.util.Map;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -15,10 +19,13 @@ import rx.schedulers.Schedulers;
 
 public abstract class BaseService {
     private Retrofit mRetrofit;
+    private UrlBuilder mUrlBuilder;
 
-    public OkHttpClient getOkHttpClient() {
-        return RemoteDataLayer.getInstance().getDefaultOkHttpClient();
+    public BaseService() {
+        mUrlBuilder = new UrlBuilder();
     }
+
+    public abstract OkHttpClient getOkHttpClient();
 
     public Retrofit getRetrofit() {
         if(mRetrofit == null) {
@@ -33,4 +40,16 @@ public abstract class BaseService {
     }
 
     public abstract @NonNull String getBaseUrl();
+
+    public String buildUrl(String baseUrl, Map<String, String> params) {
+        if(baseUrl != null) {
+            mUrlBuilder.setUrl(baseUrl);
+        }
+        if(params != null && params.keySet().size() > 0) {
+            for(String key : params.keySet()) {
+                mUrlBuilder.addParam(key, params.get(key));
+            }
+        }
+        return mUrlBuilder.build();
+    }
 }

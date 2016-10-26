@@ -9,12 +9,12 @@ import okhttp3.OkHttpClient;
  * Email: 372786297@qq.com
  */
 
-public class RemoteDataLayer {
-    private static RemoteDataLayer sInstance;
+public abstract class RemoteDataLayer {
+//    private static RemoteDataLayer sInstance;
 
     private OkHttpClient mOkHttpClient;
 
-    private RemoteDataLayer() {
+    public RemoteDataLayer() {
         mOkHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
@@ -23,16 +23,16 @@ public class RemoteDataLayer {
                 .build();
     }
 
-    public static RemoteDataLayer getInstance() {
-        if(sInstance == null) {
-            synchronized (RemoteDataLayer.class) {
-                if(sInstance == null) {
-                    sInstance = new RemoteDataLayer();
-                }
-            }
-        }
-        return sInstance;
-    }
+//    public static RemoteDataLayer getInstance() {
+//        if(sInstance == null) {
+//            synchronized (RemoteDataLayer.class) {
+//                if(sInstance == null) {
+//                    sInstance = new RemoteDataLayer();
+//                }
+//            }
+//        }
+//        return sInstance;
+//    }
 
     public OkHttpClient getDefaultOkHttpClient() {
         return mOkHttpClient;

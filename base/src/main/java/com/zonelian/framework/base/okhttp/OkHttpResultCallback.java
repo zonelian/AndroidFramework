@@ -1,5 +1,7 @@
 package com.zonelian.framework.base.okhttp;
 
+import com.zonelian.framework.core.http.Result;
+
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -7,7 +9,7 @@ import okhttp3.Response;
  * Created by kernel on 16/6/19.
  * Email: 372786297@qq.com
  */
-public interface HttpResultCallback<T extends Result> {
+public interface OkHttpResultCallback<T extends Result> {
     public void onResultSuccess(Call call, Response response, T result);
     public void onResultCanceled(Call call);
     public void onResultTimeout(Call call);

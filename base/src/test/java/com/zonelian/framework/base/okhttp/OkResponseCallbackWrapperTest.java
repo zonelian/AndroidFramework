@@ -51,7 +51,7 @@ public class OkResponseCallbackWrapperTest extends TestCase{
         OkResponseCallbackWrapper callback = new OkResponseCallbackWrapper.Builder()
                 .timeout(TimeUnit.SECONDS.toNanos(5))
                 .responseParser(new ResponseGsonParser())
-                .resultCallback(new HttpResultCallback() {
+                .resultCallback(new OkHttpResultCallback() {
                     @Override
                     public void onResultSuccess(Call call, Response response, Result result) {
                         Assert.assertEquals(201, response.code());

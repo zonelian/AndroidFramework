@@ -1,7 +1,6 @@
 package com.zonelian.framework.base.mock;
 
 import com.google.gson.annotations.SerializedName;
-import com.zonelian.framework.base.okhttp.Result;
 
 /**
  * Created by kernel on 16/6/28.
