@@ -18,7 +18,7 @@ import rx.schedulers.Schedulers;
 
 public class RxHttpUtil {
 
-    public static <T> Subscription subscribeOn(Observable source, final Action1<T> onNext, final Action1<Throwable> onError,
+    public static <T> Subscription subscribe(Observable source, final Action1<T> onNext, final Action1<Throwable> onError,
                                                final Action0 onTimeout, long timeout, TimeUnit timeUnit, final boolean subscribeOnUI) {
         source.observeOn(Schedulers.io());
         Observable temp = source.timeout(timeout, timeUnit);
@@ -61,7 +61,7 @@ public class RxHttpUtil {
         });
     }
 
-    public static <T> Subscription subscribeOn(Observable source, final Action1<T> onNext, final Action0 onComplete,
+    public static <T> Subscription subscribe(Observable source, final Action1<T> onNext, final Action0 onComplete,
                                                final Action1<Throwable> onError, final Action0 onTimeout,
                                                long timeout, TimeUnit timeUnit, final boolean subscribeOnUI) {
         source.observeOn(Schedulers.io());

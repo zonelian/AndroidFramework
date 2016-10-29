@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Email: 372786297@qq.com
  */
 
-public class ResultModel<T> implements Result, Serializable{
+public class ResultModel<T> implements Result<T>, Serializable{
     public static final int CODE_OK = 200;
     private int code;
     private String msg;
@@ -44,5 +44,10 @@ public class ResultModel<T> implements Result, Serializable{
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    @Override
+    public T getData() {
+        return data;
     }
 }

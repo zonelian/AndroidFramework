@@ -5,12 +5,12 @@ import android.os.Bundle;
 import com.zonelian.androidframework.server.BaiduDataServer;
 import com.zonelian.androidframework.server.baidu.model.BaiduModel;
 import com.zonelian.androidframework.server.baidu.model.IDBean;
-import com.zonelian.androidframework.server.main.model.DetailBean;
 import com.zonelian.framework.base.presenter.BaseActivityPresenter;
 
 import rx.Subscription;
 import rx.functions.Action0;
 import rx.functions.Action1;
+import rx.functions.Action2;
 
 /**
  * Created by kernel on 2016/10/22.
@@ -87,16 +87,16 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
 //                    }
 //                });
 //        addSubscription(subscription);
-        initTest();
+//        initTimeout();
+        initCustome();
     }
 
-    private void initTest() {
+    private void initTimeout() {
         BaiduDataServer server = App.getInstance().getRemoteDataLater().getBaiduServer();
         Subscription subscription = server.subscribe(server.getID("420984198704207896"),
                 new Action1<BaiduModel<IDBean>>() {
             @Override
             public void call(BaiduModel<IDBean> idBeanBaiduModel) {
-                onInitNotNew();
             }
         }, new Action1<Throwable>() {
             @Override
@@ -112,27 +112,58 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
         addSubscription(subscription);
     }
 
-    private void onInitSuccess(DetailBean data) {
-        if(getView() != null) {
-            getView().showData(data.name, data.age);
-        }
+    private void initCustome() {
+        BaiduDataServer server = App.getInstance().getRemoteDataLater().getBaiduServer();
+        Subscription subscription = server.subscribe(server.getID("420984198704207896"),
+                new Action1<BaiduModel<IDBean>>() {
+                    @Override
+                    public void call(BaiduModel<IDBean> idBeanBaiduModel) {
+                        //success
+                        onInitSuccess(idBeanBaiduModel.getData());
+                    }
+                }, new Action2<Integer, String>() {
+                    @Override
+                    public void call(Integer integer, String s) {
+                        //failure
+                        onInitFailure(integer);
+                    }
+                }, new Action0() {
+                    @Override
+                    public void call() {
+                        //complete
+                        onInitComplete();
+                    }
+                }, new Action0() {
+                    @Override
+                    public void call() {
+                        //timeout
+                        onInitTimeout();
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        //error
+                        onInitThrowable(throwable);
+                    }
+                });
+        addSubscription(subscription);
     }
 
-    private void onInitNotMore() {
+    private void onInitSuccess(IDBean data) {
         if(getView() != null) {
-            getView().showToast("");
-        }
-    }
-
-    private void onInitNotNew() {
-        if(getView() != null) {
-            getView().showToast("");
+            getView().showToast("成功");
         }
     }
 
     private void onInitFailure(int code) {
         if(getView() != null) {
             getView().showToast("失败");
+        }
+    }
+
+    private void onInitComplete() {
+        if(getView() != null) {
+            getView().showToast("完毕");
         }
     }
 

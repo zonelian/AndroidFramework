@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Email: 372786297@qq.com
  */
 
-public class BaiduModel<T> implements Result, Serializable {
+public class BaiduModel<T> implements Result<T>, Serializable {
     @SerializedName("errNum")
     private int code;
     @SerializedName("retMsg")
@@ -31,5 +31,10 @@ public class BaiduModel<T> implements Result, Serializable {
     @Override
     public boolean isOk() {
         return code == 0;
+    }
+
+    @Override
+    public T getData() {
+        return data;
     }
 }
