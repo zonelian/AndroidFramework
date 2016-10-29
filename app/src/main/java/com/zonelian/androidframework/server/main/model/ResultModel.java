@@ -1,4 +1,4 @@
-package com.zonelian.androidframework.server.model;
+package com.zonelian.androidframework.server.main.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.zonelian.androidframework.server.entity.FailureMsgEntity;

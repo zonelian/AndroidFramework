@@ -3,9 +3,9 @@ package com.zonelian.androidframework.server;
 import android.support.annotation.NonNull;
 
 import com.zonelian.androidframework.App;
-import com.zonelian.androidframework.server.main.api.DetailInterface;
-import com.zonelian.androidframework.server.main.model.DetailBean;
-import com.zonelian.androidframework.server.main.model.ResultModel;
+import com.zonelian.androidframework.server.baidu.api.QueryIDInterface;
+import com.zonelian.androidframework.server.baidu.model.BaiduModel;
+import com.zonelian.androidframework.server.baidu.model.IDBean;
 import com.zonelian.framework.base.data.remote.BaseService;
 
 import java.util.HashMap;
@@ -15,11 +15,11 @@ import okhttp3.OkHttpClient;
 import rx.Observable;
 
 /**
- * Created by kernel on 2016/10/25.
+ * Created by kernel on 2016/10/29.
  * Email: 372786297@qq.com
  */
 
-public class MainDataServer extends BaseService{
+public class BaiduDataServer extends BaseService{
 
     @Override
     public OkHttpClient getOkHttpClient() {
@@ -32,9 +32,9 @@ public class MainDataServer extends BaseService{
         return UrlManager.getInstance().getBaseUrl();
     }
 
-    public Observable<ResultModel<DetailBean>> getDetail(String id) {
+    public Observable<BaiduModel<IDBean>> getID(String id) {
         Map<String, String> params = new HashMap<>();
         params.put("id", id);
-        return getRetrofit().create(DetailInterface.class).getDetail(params);
+        return getRetrofit().create(QueryIDInterface.class).getID(params);
     }
 }

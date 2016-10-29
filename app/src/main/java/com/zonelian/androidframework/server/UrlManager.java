@@ -9,10 +9,10 @@ public class UrlManager {
     private static UrlManager sInstance;
     private boolean mIsDebug;
 
-    private static final String BASE_DOMAIN_RELEASE = "baidu.com";
+    private static final String BASE_DOMAIN_RELEASE = "apis.baidu.com";
     private static final String BASE_DOMAIN_DEBUG = "test.com";
 
-    private static String sBaseUrl = "http://www." + BASE_DOMAIN_RELEASE;
+    private static String sBaseUrl = "http://" + BASE_DOMAIN_RELEASE;
 
     private UrlManager() {
         initUrl();
@@ -36,9 +36,9 @@ public class UrlManager {
 
     private void initUrl() {
         if(mIsDebug) {
-            sBaseUrl = "http://www." + BASE_DOMAIN_DEBUG;
+            sBaseUrl = "http://" + BASE_DOMAIN_DEBUG;
         }else {
-            sBaseUrl = "http://www." + BASE_DOMAIN_RELEASE;
+            sBaseUrl = "http://" + BASE_DOMAIN_RELEASE;
         }
     }
 

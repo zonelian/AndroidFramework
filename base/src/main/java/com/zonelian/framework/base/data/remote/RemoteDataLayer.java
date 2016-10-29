@@ -10,8 +10,6 @@ import okhttp3.OkHttpClient;
  */
 
 public abstract class RemoteDataLayer {
-//    private static RemoteDataLayer sInstance;
-
     private OkHttpClient mOkHttpClient;
 
     public RemoteDataLayer() {

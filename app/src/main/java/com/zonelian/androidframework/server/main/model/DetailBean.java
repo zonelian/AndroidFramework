@@ -1,4 +1,6 @@
-package com.zonelian.androidframework.server.model;
+package com.zonelian.androidframework.server.main.model;
+
+import com.zonelian.androidframework.server.model.BaseBean;
 
 /**
  * Created by kernel on 2016/10/25.

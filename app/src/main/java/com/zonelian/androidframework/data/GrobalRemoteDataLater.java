@@ -1,5 +1,6 @@
 package com.zonelian.androidframework.data;
 
+import com.zonelian.androidframework.server.BaiduDataServer;
 import com.zonelian.androidframework.server.MainDataServer;
 import com.zonelian.framework.base.data.remote.RemoteDataLayer;
 
@@ -10,12 +11,18 @@ import com.zonelian.framework.base.data.remote.RemoteDataLayer;
 
 public class GrobalRemoteDataLater extends RemoteDataLayer {
     private MainDataServer mMainServer;
+    private BaiduDataServer mBaiduServer;
 
     public GrobalRemoteDataLater() {
         mMainServer = new MainDataServer();
+        mBaiduServer = new BaiduDataServer();
     }
 
     public MainDataServer getMainServer() {
         return mMainServer;
+    }
+
+    public BaiduDataServer getBaiduServer() {
+        return mBaiduServer;
     }
 }

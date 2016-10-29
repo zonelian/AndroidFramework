@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zonelian.framework.base.view.ViewFinderDelegate;
+import com.zonelian.framework.core.view.ViewFinderDelegate;
+
 
 /**
  * Created by kernel on 16/6/19.

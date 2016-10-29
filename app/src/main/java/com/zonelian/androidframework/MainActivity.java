@@ -1,6 +1,7 @@
 package com.zonelian.androidframework;
 
 import android.support.annotation.StringRes;
+import android.widget.Toast;
 
 import com.zonelian.framework.base.MVPActivity;
 
@@ -38,7 +39,7 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
 
     @Override
     public void showToast(String msg) {
-
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     @Override

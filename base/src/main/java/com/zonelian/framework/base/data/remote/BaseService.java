@@ -2,14 +2,20 @@ package com.zonelian.framework.base.data.remote;
 
 import android.support.annotation.NonNull;
 
+import com.zonelian.framework.base.rx.RxHttpUtil;
 import com.zonelian.framework.core.http.UrlBuilder;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.Subscription;
+import rx.functions.Action0;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -37,6 +43,16 @@ public abstract class BaseService {
                     .build();
         }
         return mRetrofit;
+    }
+
+    public <T> Subscription subscribe(Observable source, Action1<T> onNext, Action1<Throwable> onError,
+                                      Action0 onTimeout) {
+        return RxHttpUtil.subscribeOn(source, onNext, onError, onTimeout, 30, TimeUnit.SECONDS, true);
+    }
+
+    public <T> Subscription subscribe(Observable source, Action1<T> onNext, Action0 onComplete,
+                                      Action1<Throwable> onError, Action0 onTimeout) {
+        return RxHttpUtil.subscribeOn(source, onNext, onComplete, onError, onTimeout, 30, TimeUnit.SECONDS, true);
     }
 
     public abstract @NonNull String getBaseUrl();
