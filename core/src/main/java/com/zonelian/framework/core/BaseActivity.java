@@ -4,13 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.zonelian.framework.core.view.ViewFinderDelegate;
+
+import static android.widget.Toast.makeText;
 
 
 /**
@@ -62,7 +66,29 @@ public abstract class BaseActivity extends FragmentActivity{
         }
     }
 
+    public void showToast(String msg) {
+        makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showToast(int resId) {
+        makeText(this, resId, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showCenterToast(String msg) {
+        Toast toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
+    public void showCenterToast(int resId) {
+        Toast toast = Toast.makeText(this, resId, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
     public abstract int initLayout();
     public abstract void initView();
     public abstract void initData();
+
+
 }

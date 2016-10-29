@@ -36,67 +36,35 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
 
     @Override
     public void onResume() {
-
     }
 
     @Override
     public void onPause() {
-
     }
 
     @Override
     public void onStop() {
-
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-
     }
 
     public void initData() {
-//        MainDataServer server = App.getInstance().getRemoteDataLater().getMainServer();
-//        Subscription subscription = server.subscribe(server.getDetail("420984198704207896"),
-//                new Action1<ResultModel<DetailBean>>() {
-//                    @Override
-//                    public void call(ResultModel<DetailBean> detailBeanResultModel) {
-//                        if(detailBeanResultModel.isOk()) {
-//                            onInitSuccess(detailBeanResultModel.data);
-//                        }else if(detailBeanResultModel.mFailureMsgEntity.isNotMore()) {
-//                            onInitNotMore();
-//                        }else if(detailBeanResultModel.mFailureMsgEntity.isNotNew()) {
-//                            onInitNotNew();
-//                        }else {
-//                            onInitFailure(detailBeanResultModel.mFailureMsgEntity.getCode());
-//                        }
-//                    }
-//                }, new Action1<Throwable>() {
-//                    @Override
-//                    public void call(Throwable throwable) {
-//                        onInitThrowable(throwable);
-//                    }
-//                }, new Action0() {
-//                    @Override
-//                    public void call() {
-//                        onInitTimeout();
-//                    }
-//                });
-//        addSubscription(subscription);
-//        initTimeout();
-        initCustome();
+        testCustome();
     }
 
-    private void initTimeout() {
+    private void testTimeout() {
         BaiduDataServer server = App.getInstance().getRemoteDataLater().getBaiduServer();
         Subscription subscription = server.subscribe(server.getID("420984198704207896"),
                 new Action1<BaiduModel<IDBean>>() {
             @Override
             public void call(BaiduModel<IDBean> idBeanBaiduModel) {
+                onInitSuccess(idBeanBaiduModel.data);
             }
         }, new Action1<Throwable>() {
             @Override
@@ -112,7 +80,7 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
         addSubscription(subscription);
     }
 
-    private void initCustome() {
+    private void testCustome() {
         BaiduDataServer server = App.getInstance().getRemoteDataLater().getBaiduServer();
         Subscription subscription = server.subscribe(server.getID("420984198704207896"),
                 new Action1<BaiduModel<IDBean>>() {
