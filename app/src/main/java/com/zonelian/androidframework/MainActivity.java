@@ -1,6 +1,7 @@
 package com.zonelian.androidframework;
 
 import android.support.annotation.StringRes;
+import android.view.View;
 import android.widget.Toast;
 
 import com.zonelian.framework.base.MVPActivity;
@@ -29,7 +30,19 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
 
     @Override
     public void initView() {
-
+        getTextViewById(R.id.tvName).setText("12222222");
+        getTextViewById(R.id.tvAge).setText("dkjalfkdjalk");
+        setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.tvName:
+                        break;
+                    case R.id.tvAge:
+                        break;
+                }
+            }
+        }, R.id.tvName, R.id.tvAge);
     }
 
     @Override

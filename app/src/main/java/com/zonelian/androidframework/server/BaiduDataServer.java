@@ -6,7 +6,7 @@ import com.zonelian.androidframework.App;
 import com.zonelian.androidframework.server.baidu.api.QueryIDInterface;
 import com.zonelian.androidframework.server.baidu.model.BaiduModel;
 import com.zonelian.androidframework.server.baidu.model.IDBean;
-import com.zonelian.framework.base.data.remote.BaseService;
+import com.zonelian.framework.base.remote.BaseAndroidService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +19,7 @@ import rx.Observable;
  * Email: 372786297@qq.com
  */
 
-public class BaiduDataServer extends BaseService{
+public class BaiduDataServer extends BaseAndroidService {
 
     @Override
     public OkHttpClient getOkHttpClient() {

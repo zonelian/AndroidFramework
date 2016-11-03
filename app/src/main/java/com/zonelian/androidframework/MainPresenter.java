@@ -60,7 +60,7 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
 
     private void testTimeout() {
         BaiduDataServer server = App.getInstance().getRemoteDataLater().getBaiduServer();
-        Subscription subscription = server.subscribe(server.getID("420984198704207896"),
+        Subscription subscription = server.subscribeOnUI(server.getID("420984198704207896"),
                 new Action1<BaiduModel<IDBean>>() {
             @Override
             public void call(BaiduModel<IDBean> idBeanBaiduModel) {
@@ -82,7 +82,7 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
 
     private void testCustome() {
         BaiduDataServer server = App.getInstance().getRemoteDataLater().getBaiduServer();
-        Subscription subscription = server.subscribe(server.getID("420984198704207896"),
+        Subscription subscription = server.subscribeOnUI(server.getID("420984198704207896"),
                 new Action1<BaiduModel<IDBean>>() {
                     @Override
                     public void call(BaiduModel<IDBean> idBeanBaiduModel) {

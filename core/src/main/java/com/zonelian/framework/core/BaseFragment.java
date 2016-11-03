@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,7 @@ public abstract class BaseFragment extends Fragment{
     public void onDestroyView() {
         super.onDestroyView();
         mViewFinderDelegete.unregister();
+        mViewFinderDelegete = null;
         mView = null;
     }
 
@@ -113,4 +115,10 @@ public abstract class BaseFragment extends Fragment{
     public abstract void initView();
     public abstract void initData();
 
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        Log.d("MemoryOptimizer", getClass().getSimpleName() + "onLowMemory");
+    }
 }

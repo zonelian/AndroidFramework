@@ -24,4 +24,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile rootProject.ext.dependencies["junit"]
+    compile rootProject.ext.dependencies["rxjava"]
 }

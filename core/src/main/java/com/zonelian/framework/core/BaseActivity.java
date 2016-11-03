@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public abstract class BaseActivity extends FragmentActivity{
     protected void onDestroy() {
         super.onDestroy();
         mViewFinderDelegete.unregister();
+        mViewFinderDelegete = null;
     }
 
     public final  <V extends View> V getViewById(@IdRes int id) {
@@ -90,5 +92,15 @@ public abstract class BaseActivity extends FragmentActivity{
     public abstract void initView();
     public abstract void initData();
 
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        Log.d("MemoryOptimizer", getClass().getSimpleName() + "onTrimMemory:" + level);
+    }
 
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        Log.d("MemoryOptimizer", getClass().getSimpleName() + "onLowMemory");
+    }
 }

@@ -21,6 +21,12 @@ public abstract class MVPActivity<T extends IActivityPresenter> extends BaseActi
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter = null;
+    }
+
     public T getPresenter() {
         return mPresenter;
     }

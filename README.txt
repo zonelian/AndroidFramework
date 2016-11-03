@@ -6,16 +6,19 @@ data:
 数据层
 
 domain:
-用例层（任务抽象接口）
+用例层,纯java,与android无关,采用rxjava
 
 mvp:
-mvp模式接口层（Model-View-Presenter）
+mvp模式接口层（Model-View-Presenter),纯java,与android无关
 
 core:
-没有集成第三方框架的核心层
+没有集成第三方框架的核心层，只有android相关的
+
+http:
+http/https协议的网络层，纯java,依赖domain层，采用okhttp、retrofit
 
 base:
-在核心层与mvp模式层（可替换成其它模式）基础上集成了各种第三方框架与库的基础层
+基础层，依赖data、domain、mvp、core、http层，集成各种第三方框架与库
 
 widget:
 控件层，各种自定义控件
@@ -26,7 +29,6 @@ Demo层,展示整个工程所有模块的使用方法
 
 ！注意：
 请不要在相关层引入与该层主要功能无关的东西
-除了base层和widget层之外其它层不要引入第三方框架
 
 二、开发规范：
 1.开放中的版本请在创建分支名字

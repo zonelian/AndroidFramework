@@ -1,7 +1,7 @@
 package com.zonelian.androidframework.data;
 
 import com.zonelian.androidframework.server.BaiduDataServer;
-import com.zonelian.framework.base.data.remote.RemoteDataLayer;
+import com.zonelian.framework.http.remote.RemoteDataLayer;
 
 /**
  * Created by kernel on 2016/10/25.

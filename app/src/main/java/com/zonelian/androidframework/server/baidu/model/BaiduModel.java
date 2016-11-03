@@ -1,7 +1,7 @@
 package com.zonelian.androidframework.server.baidu.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.zonelian.framework.core.http.Result;
+import com.zonelian.framework.http.core.Result;
 
 import java.io.Serializable;
 
