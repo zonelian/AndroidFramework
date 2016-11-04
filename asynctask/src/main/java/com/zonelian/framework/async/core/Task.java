@@ -10,6 +10,7 @@ public interface Task extends TaskExecutor{
     public interface Request {
         public static final int CONSUME_CPU = 1;
         public static final int CONSUME_IO = 2;
+        public static final int CONSUME_CUSTOME = 3;
         boolean isCancled();
         boolean isDone();
         int getWhitchPerformanceConsumeMost();

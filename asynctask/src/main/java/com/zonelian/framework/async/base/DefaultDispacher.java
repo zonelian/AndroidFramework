@@ -26,6 +26,8 @@ public class DefaultDispacher implements Dispatcher {
 
     private ExecutorService mCacheExecutorService;
 
+    private ExecutorService mCustomeExecutorService;
+
     private ConcurrentMap<Task, Future> mSubmiteds;
 
     private Handler mMainHandler;
@@ -36,6 +38,11 @@ public class DefaultDispacher implements Dispatcher {
         mSubmiteds = new ConcurrentHashMap<>();
         mMainHandler = new android.os.Handler(Looper.getMainLooper());
         Log.d(TAG, "cpu_avalable_count:" + CPU_AVALABLE_COUNT);
+    }
+
+    @Override
+    public void setExecutorService(ExecutorService executorService) {
+        mCustomeExecutorService = executorService;
     }
 
     @Override
@@ -50,6 +57,9 @@ public class DefaultDispacher implements Dispatcher {
             case Task.Request.CONSUME_IO:
                 mSubmiteds.put(task, mCacheExecutorService.submit(taskRunner));
                 Log.d(TAG, "cache submit");
+                break;
+            case Task.Request.CONSUME_CUSTOME:
+                mSubmiteds.put(task, mCustomeExecutorService.submit(taskRunner));
                 break;
             case Task.Request.CONSUME_CPU:
             default:
