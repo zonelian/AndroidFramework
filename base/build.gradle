@@ -35,4 +35,5 @@ dependencies {
     compile project(':mvp')
     compile project(':core')
     compile project(':http')
+    compile project(':domain')
 }

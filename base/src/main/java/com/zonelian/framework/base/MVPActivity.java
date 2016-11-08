@@ -3,8 +3,8 @@ package com.zonelian.framework.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.zonelian.framework.base.presenter.IActivityPresenter;
 import com.zonelian.framework.core.BaseActivity;
-import com.zonelian.framework.mvp.extend.IActivityPresenter;
 
 /**
  * Created by kernel on 2016/10/13.

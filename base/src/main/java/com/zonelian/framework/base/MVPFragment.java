@@ -3,8 +3,8 @@ package com.zonelian.framework.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.zonelian.framework.base.presenter.IFragmentPresenter;
 import com.zonelian.framework.core.BaseFragment;
-import com.zonelian.framework.mvp.extend.IFragmentPresenter;
 
 /**
  * Created by kernel on 2016/10/13.

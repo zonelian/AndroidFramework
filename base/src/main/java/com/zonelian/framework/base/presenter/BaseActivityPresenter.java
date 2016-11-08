@@ -3,7 +3,6 @@ package com.zonelian.framework.base.presenter;
 import android.os.Bundle;
 
 import com.zonelian.framework.mvp.core.MVP;
-import com.zonelian.framework.mvp.extend.IActivityPresenter;
 
 import java.util.ArrayList;
 import java.util.List;

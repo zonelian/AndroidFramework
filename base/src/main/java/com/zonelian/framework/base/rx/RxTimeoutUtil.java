@@ -1,4 +1,4 @@
-package com.zonelian.framework.domain.rx;
+package com.zonelian.framework.base.rx;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;

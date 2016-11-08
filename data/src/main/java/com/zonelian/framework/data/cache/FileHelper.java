@@ -1,6 +1,5 @@
 package com.zonelian.framework.data.cache;
 
-import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 
 import java.io.File;
@@ -15,7 +14,6 @@ import java.io.ObjectOutputStream;
  * Email: 372786297@qq.com
  */
 public class FileHelper {
-    private ArrayMap<String, Cache> mCaChes;
     private static FileHelper sInstance;
 
     public static FileHelper getInstance() {
@@ -28,44 +26,6 @@ public class FileHelper {
     }
 
     private FileHelper() {
-        mCaChes = new ArrayMap<>();
-    }
-
-    public boolean isRegisted(String key) {
-        if(mCaChes.containsKey(key)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean registerCache(String key, Cache cache) {
-        if(mCaChes.containsKey(key)) {
-            return false;
-        }
-        mCaChes.put(key, cache);
-        return true;
-    }
-
-    public boolean unregisterCache(String key) {
-        if( !mCaChes.containsKey(key)) {
-            return false;
-        }
-        mCaChes.remove(key);
-        return true;
-    }
-
-    public Object get(String cacheKey, Object key) {
-        if(isRegisted(cacheKey)) {
-            return mCaChes.get(cacheKey).get(key);
-        }else {
-            return null;
-        }
-    }
-
-    public void put(String cacheKey, Object key, Object value) {
-        if(isRegisted(cacheKey)) {
-            mCaChes.get(cacheKey).put(key, value);
-        }
     }
 
     public void putSerializable(String filePath, Object obj) {

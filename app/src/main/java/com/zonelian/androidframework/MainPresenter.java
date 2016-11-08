@@ -56,6 +56,7 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
 
     public void initData() {
         testCustome();
+
     }
 
     private void testTimeout() {
