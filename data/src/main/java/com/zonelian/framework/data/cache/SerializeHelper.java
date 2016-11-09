@@ -13,20 +13,20 @@ import java.io.ObjectOutputStream;
  * Created by kernel on 16/7/15.
  * Email: 372786297@qq.com
  */
-public class FileHelper {
-    private static FileHelper sInstance;
-
-    public static FileHelper getInstance() {
-        if(sInstance == null) {
-            synchronized (FileHelper.class) {
-                sInstance = new FileHelper();
-            }
-        }
-        return sInstance;
-    }
-
-    private FileHelper() {
-    }
+public class SerializeHelper {
+//    private static SerializeHelper sInstance;
+//
+//    public static SerializeHelper getInstance() {
+//        if(sInstance == null) {
+//            synchronized (SerializeHelper.class) {
+//                sInstance = new SerializeHelper();
+//            }
+//        }
+//        return sInstance;
+//    }
+//
+//    private SerializeHelper() {
+//    }
 
     public void putSerializable(String filePath, Object obj) {
         if(!TextUtils.isEmpty(filePath) || obj == null) {

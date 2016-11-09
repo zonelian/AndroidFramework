@@ -1,18 +1,18 @@
-package com.zonelian.androidframework;
+package com.zonelian.androidframework.demo;
 
 import android.app.Application;
 
-import com.zonelian.androidframework.data.GrobalRemoteDataLater;
+import com.zonelian.androidframework.demo.base.datasource.local.GrobalLocalDataLayer;
+import com.zonelian.androidframework.demo.base.datasource.remote.GrobalRemoteDataLayer;
 import com.zonelian.framework.core.memory.MemoryOptimizer;
-import com.zonelian.framework.data.cache.SharePreferencesHelper;
 
 /**
  * Created by kernel on 16/7/3.
  * Email: 372786297@qq.com
  */
 public class App extends Application{
-    private GrobalRemoteDataLater mRemoteDataLater;
-    private SharePreferencesHelper mSharePrefHelper;
+    private GrobalLocalDataLayer mLocalDataLayer;
+    private GrobalRemoteDataLayer mRemoteDataLayer;
     private static App sInstance;
 
     public static final App getInstance(){
@@ -24,16 +24,16 @@ public class App extends Application{
         super.onCreate();
         MemoryOptimizer.getInstance().init();
         sInstance = this;
-        mRemoteDataLater = new GrobalRemoteDataLater();
-        mSharePrefHelper = new SharePreferencesHelper(sInstance, "Application");
+        mLocalDataLayer = new GrobalLocalDataLayer();
+        mRemoteDataLayer = new GrobalRemoteDataLayer();
     }
 
-    public GrobalRemoteDataLater getRemoteDataLater() {
-        return mRemoteDataLater;
+    public GrobalRemoteDataLayer getRemoteDataLayer() {
+        return mRemoteDataLayer;
     }
 
-    public SharePreferencesHelper getSharePrefeHelper() {
-        return mSharePrefHelper;
+    public GrobalLocalDataLayer getLocalDataLayer() {
+        return mLocalDataLayer;
     }
 
     @Override

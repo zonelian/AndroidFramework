@@ -1,11 +1,12 @@
-package com.zonelian.androidframework.server;
+package com.zonelian.androidframework.demo.main.remote;
 
 import android.support.annotation.NonNull;
 
-import com.zonelian.androidframework.App;
-import com.zonelian.androidframework.server.baidu.api.QueryIDInterface;
-import com.zonelian.androidframework.server.baidu.model.BaiduModel;
-import com.zonelian.androidframework.server.baidu.model.IDBean;
+import com.zonelian.androidframework.demo.App;
+import com.zonelian.androidframework.demo.base.datasource.remote.UrlManager;
+import com.zonelian.androidframework.demo.main.remote.baidu.api.QueryIDInterface;
+import com.zonelian.androidframework.demo.main.remote.baidu.model.BaiduModel;
+import com.zonelian.androidframework.demo.main.remote.baidu.model.IDBean;
 import com.zonelian.framework.base.remote.BaseAndroidService;
 
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class BaiduDataServer extends BaseAndroidService {
 
     @Override
     public OkHttpClient getOkHttpClient() {
-        return App.getInstance().getRemoteDataLater().getDefaultOkHttpClient();
+        return App.getInstance().getRemoteDataLayer().getDefaultOkHttpClient();
     }
 
     @NonNull

@@ -1,4 +1,4 @@
-package com.zonelian.androidframework.server.model;
+package com.zonelian.androidframework.demo.base.datasource.remote.model;
 
 import java.io.Serializable;
 

@@ -1,6 +1,7 @@
-package com.zonelian.androidframework.server.baidu.model;
+package com.zonelian.androidframework.demo.main.remote.baidu.model;
 
-import com.zonelian.androidframework.server.model.BaseBean;
+
+import com.zonelian.androidframework.demo.base.datasource.remote.model.BaseBean;
 
 /**
  * Created by kernel on 2016/10/29.

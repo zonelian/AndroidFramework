@@ -1,6 +1,6 @@
-package com.zonelian.androidframework.data;
+package com.zonelian.androidframework.demo.base.datasource.remote;
 
-import com.zonelian.androidframework.server.BaiduDataServer;
+import com.zonelian.androidframework.demo.main.remote.BaiduDataServer;
 import com.zonelian.framework.http.remote.RemoteDataLayer;
 
 /**
@@ -8,10 +8,10 @@ import com.zonelian.framework.http.remote.RemoteDataLayer;
  * Email: 372786297@qq.com
  */
 
-public class GrobalRemoteDataLater extends RemoteDataLayer {
+public class GrobalRemoteDataLayer extends RemoteDataLayer {
     private BaiduDataServer mBaiduServer;
 
-    public GrobalRemoteDataLater() {
+    public GrobalRemoteDataLayer() {
         mBaiduServer = new BaiduDataServer();
     }
 

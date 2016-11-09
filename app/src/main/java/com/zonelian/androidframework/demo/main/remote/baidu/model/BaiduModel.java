@@ -1,4 +1,4 @@
-package com.zonelian.androidframework.server.baidu.model;
+package com.zonelian.androidframework.demo.main.remote.baidu.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.zonelian.framework.http.core.Result;

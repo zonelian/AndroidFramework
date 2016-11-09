@@ -1,4 +1,4 @@
-package com.zonelian.androidframework.server;
+package com.zonelian.androidframework.demo.base.datasource.remote;
 
 /**
  * Created by kernel on 2016/10/23.

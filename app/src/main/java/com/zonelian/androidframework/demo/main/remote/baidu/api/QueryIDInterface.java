@@ -1,7 +1,7 @@
-package com.zonelian.androidframework.server.baidu.api;
+package com.zonelian.androidframework.demo.main.remote.baidu.api;
 
-import com.zonelian.androidframework.server.baidu.model.BaiduModel;
-import com.zonelian.androidframework.server.baidu.model.IDBean;
+import com.zonelian.androidframework.demo.main.remote.baidu.model.BaiduModel;
+import com.zonelian.androidframework.demo.main.remote.baidu.model.IDBean;
 
 import java.util.Map;
 

@@ -1,5 +1,6 @@
-package com.zonelian.androidframework;
+package com.zonelian.androidframework.demo.first;
 
+import com.zonelian.androidframework.demo.R;
 import com.zonelian.framework.base.MVPActivity;
 
 /**
@@ -7,7 +8,7 @@ import com.zonelian.framework.base.MVPActivity;
  * Email: 372786297@qq.com
  */
 
-public class FirstActivity extends MVPActivity<FirstPresenter> implements FirstView{
+public class FirstActivity extends MVPActivity<FirstPresenter> implements FirstView {
 
     @Override
     public FirstPresenter createPresenter() {

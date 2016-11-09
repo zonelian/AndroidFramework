@@ -1,4 +1,4 @@
-package com.zonelian.androidframework;
+package com.zonelian.androidframework.demo.main;
 
 import android.support.annotation.StringRes;
 

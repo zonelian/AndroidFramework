@@ -1,9 +1,10 @@
-package com.zonelian.androidframework;
+package com.zonelian.androidframework.demo.main;
 
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Toast;
 
+import com.zonelian.androidframework.demo.R;
 import com.zonelian.framework.base.MVPActivity;
 
 /**
@@ -11,7 +12,7 @@ import com.zonelian.framework.base.MVPActivity;
  * Email: 372786297@qq.com
  */
 
-public class MainActivity extends MVPActivity<MainPresenter> implements MainView{
+public class MainActivity extends MVPActivity<MainPresenter> implements MainView {
 
     @Override
     public MainPresenter createPresenter() {

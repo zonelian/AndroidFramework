@@ -1,10 +1,11 @@
-package com.zonelian.androidframework;
+package com.zonelian.androidframework.demo.main;
 
 import android.os.Bundle;
 
-import com.zonelian.androidframework.server.BaiduDataServer;
-import com.zonelian.androidframework.server.baidu.model.BaiduModel;
-import com.zonelian.androidframework.server.baidu.model.IDBean;
+import com.zonelian.androidframework.demo.App;
+import com.zonelian.androidframework.demo.main.remote.BaiduDataServer;
+import com.zonelian.androidframework.demo.main.remote.baidu.model.BaiduModel;
+import com.zonelian.androidframework.demo.main.remote.baidu.model.IDBean;
 import com.zonelian.framework.base.presenter.BaseActivityPresenter;
 
 import rx.Subscription;
@@ -60,7 +61,7 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
     }
 
     private void testTimeout() {
-        BaiduDataServer server = App.getInstance().getRemoteDataLater().getBaiduServer();
+        BaiduDataServer server = App.getInstance().getRemoteDataLayer().getBaiduServer();
         Subscription subscription = server.subscribeOnUI(server.getID("420984198704207896"),
                 new Action1<BaiduModel<IDBean>>() {
             @Override
@@ -82,7 +83,7 @@ public class MainPresenter extends BaseActivityPresenter<MainView> {
     }
 
     private void testCustome() {
-        BaiduDataServer server = App.getInstance().getRemoteDataLater().getBaiduServer();
+        BaiduDataServer server = App.getInstance().getRemoteDataLayer().getBaiduServer();
         Subscription subscription = server.subscribeOnUI(server.getID("420984198704207896"),
                 new Action1<BaiduModel<IDBean>>() {
                     @Override
