@@ -29,7 +29,7 @@ public class SerializeHelper {
 //    }
 
     public void putSerializable(String filePath, Object obj) {
-        if(!TextUtils.isEmpty(filePath) || obj == null) {
+        if(TextUtils.isEmpty(filePath) || obj == null) {
             return;
         }
         File f = new File(filePath);

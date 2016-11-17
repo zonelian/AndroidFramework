@@ -1,17 +1,11 @@
 package com.zonelian.androidframework.demo.main;
 
-import android.support.annotation.StringRes;
-
-import com.zonelian.framework.mvp.core.MVP;
+import com.zonelian.androidframework.demo.base.app.BaseAppView;
 
 /**
  * Created by kernel on 2016/10/22.
  * Email: 372786297@qq.com
  */
 
-public interface MainView extends MVP.MVPView {
-    void showToast(@StringRes int resId);
-    void showToast(String msg);
-
-    void showData(String name, int age);
+public interface MainView extends BaseAppView {
 }

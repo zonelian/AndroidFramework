@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 public class CommonRecyclerAdapter<M> extends BaseRecyclerAdapter<M, CommonRecyclerViewHolder>{
     private int mLayoutResIdDefault;
 
+    public CommonRecyclerAdapter() {
+        super();
+    }
+
     public CommonRecyclerAdapter(int layoutResId) {
         super();
         mLayoutResIdDefault = layoutResId;

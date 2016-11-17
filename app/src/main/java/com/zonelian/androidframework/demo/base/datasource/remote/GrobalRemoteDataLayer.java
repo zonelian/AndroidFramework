@@ -1,6 +1,6 @@
 package com.zonelian.androidframework.demo.base.datasource.remote;
 
-import com.zonelian.androidframework.demo.main.remote.BaiduDataServer;
+import com.zonelian.androidframework.demo.second.remote.BaiduDataServer;
 import com.zonelian.framework.http.remote.RemoteDataLayer;
 
 /**

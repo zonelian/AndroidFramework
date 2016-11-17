@@ -21,6 +21,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".first.FirstActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".second.SecondActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

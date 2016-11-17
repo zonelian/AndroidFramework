@@ -1,4 +1,4 @@
-package com.zonelian.androidframework.demo.main.remote.entity;
+package com.zonelian.androidframework.demo.second.remote.entity;
 
 /**
  * Created by kernel on 2016/10/26.

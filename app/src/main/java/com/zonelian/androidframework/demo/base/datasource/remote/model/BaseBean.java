@@ -7,5 +7,5 @@ import java.io.Serializable;
  * Email: 372786297@qq.com
  */
 
-public abstract class BaseBean implements Serializable {
+public interface BaseBean extends Serializable {
 }

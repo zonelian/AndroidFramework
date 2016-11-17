@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.zonelian.androidframework.demo.R;
+import com.zonelian.androidframework.demo.first.FirstActivity;
+import com.zonelian.androidframework.demo.second.SecondActivity;
 import com.zonelian.framework.base.MVPActivity;
 
 /**
@@ -31,24 +33,23 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
 
     @Override
     public void initView() {
-        getTextViewById(R.id.tvName).setText("12222222");
-        getTextViewById(R.id.tvAge).setText("dkjalfkdjalk");
         setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.tvName:
+                    case R.id.btnFirst:
+                        FirstActivity.launch(MainActivity.this);
                         break;
-                    case R.id.tvAge:
+                    case R.id.btnSecond:
+                        SecondActivity.launch(MainActivity.this);
                         break;
                 }
             }
-        }, R.id.tvName, R.id.tvAge);
+        }, R.id.btnFirst, R.id.btnSecond);
     }
 
     @Override
     public void initData() {
-        getPresenter().initData();
     }
 
     @Override
@@ -59,11 +60,5 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
     @Override
     public void showToast(@StringRes int resId) {
 
-    }
-
-    @Override
-    public void showData(String name, int age) {
-        getTextViewById(R.id.tvName).setText(name);
-        getTextViewById(R.id.tvAge).setText("" + age);
     }
 }

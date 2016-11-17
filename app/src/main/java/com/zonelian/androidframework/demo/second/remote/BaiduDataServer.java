@@ -1,12 +1,12 @@
-package com.zonelian.androidframework.demo.main.remote;
+package com.zonelian.androidframework.demo.second.remote;
 
 import android.support.annotation.NonNull;
 
 import com.zonelian.androidframework.demo.App;
 import com.zonelian.androidframework.demo.base.datasource.remote.UrlManager;
-import com.zonelian.androidframework.demo.main.remote.baidu.api.QueryIDInterface;
-import com.zonelian.androidframework.demo.main.remote.baidu.model.BaiduModel;
-import com.zonelian.androidframework.demo.main.remote.baidu.model.IDBean;
+import com.zonelian.androidframework.demo.second.remote.baidu.api.QueryIDInterface;
+import com.zonelian.androidframework.demo.second.remote.baidu.model.BaiduModel;
+import com.zonelian.androidframework.demo.second.remote.baidu.model.IDBean;
 import com.zonelian.framework.base.remote.BaseAndroidService;
 
 import java.util.HashMap;

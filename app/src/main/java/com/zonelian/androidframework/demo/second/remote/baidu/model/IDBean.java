@@ -1,4 +1,4 @@
-package com.zonelian.androidframework.demo.main.remote.baidu.model;
+package com.zonelian.androidframework.demo.second.remote.baidu.model;
 
 
 import com.zonelian.androidframework.demo.base.datasource.remote.model.BaseBean;
@@ -8,7 +8,7 @@ import com.zonelian.androidframework.demo.base.datasource.remote.model.BaseBean;
  * Email: 372786297@qq.com
  */
 
-public class IDBean extends BaseBean {
+public class IDBean implements BaseBean {
     public String sex;
     public String birthday;
     public String address;
