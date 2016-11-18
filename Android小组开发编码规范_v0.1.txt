@@ -1,0 +1,202 @@
+Android开发规范草稿（仅供参考，欢迎提供意见）
+2015/11/02
+
+
+一、文件命名
+1、类文件命名：
+ ＊＊＊＊  +  类型
+遵循驼峰命名法，每个单词首字母大写，其他小写
+例如：
+UserActivity
+SelectCityActivity
+NoticeDialog
+
+2、资源文件：
+类型 ＋ ＊＊＊
+小写字母，单词间用下划线隔开，例子如下
+
+2.1、layout:
+activity_XXX
+fragment_XXX
+dlg_XXX
+include_XXX
+item_XXX_list
+popwin_XXX
+header_XXX
+foot_XXX
+
+2.2、anim:
+alpha_XXX
+set_XXX
+translate_XXX
+
+2.3、color:
+seletor_XXX
+
+2.4、drawable:
+shape_XXX
+selector_XXX
+
+2.5、values:
+arrays_XXX
+attrs_XXX
+colors_XXX
+dimens_XXX
+strings_XXX
+styles_XXX
+
+
+二、res资源命名
+1、layout:
+id命名    类型 ＋ 下划线 ＋ ＊＊＊＊   纯小写字母
+例如：
+tv_XXX  （TextView）
+lv_XXX   (ListView)
+iv_XXX    (ImageView)
+ll_XXX   (LinearLayout)
+rl_XXX  (ReletiveLayout)
+fl_XXX     (FrameLayout)
+
+2、arrays:
+每个单词首字母大写，其他小写
+例如：
+UserType
+
+3、attrs:
+declare_styleable name:   每个单词首字母大写，其他小写
+例如：
+CircleImageView
+
+attr name: 第一个单词小写，之后的每个单词的首字母大写，其他小写
+例如：
+borderColor
+
+4、colors:
+纯小写字母，每个单词间用下划线隔开
+例如：
+sky_blue
+
+5、dimens:
+纯小写字母，每个单词间用下划线隔开
+例如：
+margin_base
+
+6、strings:
+纯小写字母，每个单词间用下划线隔开
+例如：
+refresh_notice
+
+7、style:
+style name: 每个单词首字母大写，其他小写
+例如：
+BaseAppTheme
+
+item name:  第一个单词小写，之后的每个单词的首字母大写，其他小写
+例如：
+backgroundColor
+
+
+三、代码命名
+1、类名：
+不管是内部类还是其他类，类名类似TestActivity
+
+2、变量与常量：
+类里面的全局常量     TEST_ACTIVITY
+类里面的全局静态变量   sTestActivity
+类里面的全局非静态变量   mTestActivity
+局部变量                 testActivity
+bool型    is(XXX)   (XXX)Enabled   (XXX)able
+量词     (XXX)Count (XXX)Num  (XXX)Index
+名词       (XXX}[that]adj   ***'s(XXX)[that]adj      
+
+3、方法：
+方法类似下面：
+testForFun
+adv + [adj](修饰名词)[***'s]n + adj(修饰动词)   
+
+4、
+另外特别注意：每个变量一行，不要出现一行声明多个变量的情况，如int i = 0, j = 0;
+尽量变量名或方法名本身就能表达其作用，不过无法表达或表达不准确，可以增加适当的注释
+每行控制在不超过80列
+
+
+四、代码注释
+1、代码说明式注释：
+单行   ／＊  ＊／   
+
+多行   ／＊＊
+        ＊
+        *
+        ＊／
+
+2、代码删除时注释：
+／／
+
+五、代码间隔
+1.逻辑比较紧密的代码之间不留空行
+2.不同逻辑块之间空出一行
+3.运算符 与变量或方法之间留一个空格，例如
+if(a == 1 && b > 2)
+
+4.括号，例如：
+        switch (wifiConfigurations.size()) {
+            case 1:
+                break;
+            case 2:
+                break;
+            default:
+                break;
+        }
+
+
+        if(a == 1) {
+
+        }else if(b == 2) {
+
+        }else {
+
+        }
+
+六、缩写
+全称          缩写
+icon         ic
+image        img
+backgroud    bg
+window       win
+
+buffer       buf
+average      avg
+control      ctrl
+delete       del
+document     doc
+error        err
+increase     inc
+decrease     dec
+infomation   info
+lenth        len
+library      lib
+message      msg
+position     pos
+password     psw
+string       str
+temp         tmp
+
+previous     pre
+current      cur
+
+ImageView    iv
+Button       btn
+ImageButton  imgBtn
+TextView     tv
+EditText     et
+ListView     lv
+ScrollView   sv
+WebView      wv
+PrograssBar  pb
+FrameLayout        FL
+LinearLayout       LL
+ReletiveLayout     RL
+GridLayout         GL
+
+
+

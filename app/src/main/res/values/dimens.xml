@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="F10">10sp</dimen>
+    <dimen name="F11">11sp</dimen>
+    <dimen name="F12">12sp</dimen>
+    <dimen name="F13">13sp</dimen>
+    <dimen name="F14">14sp</dimen>
+    <dimen name="F15">15sp</dimen>
+    <dimen name="F16">16sp</dimen>
+    <dimen name="F17">17sp</dimen>
+    <dimen name="F18">18sp</dimen>
+    <dimen name="F19">19sp</dimen>
+    <dimen name="F20">20sp</dimen>
+    <dimen name="F21">21sp</dimen>
+</resources>

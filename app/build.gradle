@@ -1,16 +1,28 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'org.greenrobot.greendao'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.zonelian.androidframework"
-        minSdkVersion 10
-        targetSdkVersion 23
+        applicationId "com.zonelian.androidframework.demo"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
+
+    dexOptions {
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
+        exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,10 +33,12 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile project(':mvp')
-    compile 'io.reactivex:rxjava:1.1.5'
-    compile 'io.reactivex:rxandroid:1.2.0'
+    testCompile rootProject.ext.dependencies["junit"]
+    compile rootProject.ext.dependencies["logging-okhttp3"]
+    compile rootProject.ext.dependencies["retrofit-gson"]
+    compile rootProject.ext.dependencies["retrofit_rxjava"]
+    compile rootProject.ext.dependencies["greendao"]
+
     compile project(':base')
+    compile project(':asynctask')
 }

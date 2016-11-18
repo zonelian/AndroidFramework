@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:padding="50dp">
+
+    <EditText
+        android:background="@color/material_grey_300"
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="middle"
+        android:textColor="@color/black"
+        android:textSize="@dimen/F16"
+        android:gravity="center_vertical|left"
+        android:padding="5dp"/>
+
+    <Button
+        android:id="@+id/btnInsert"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/F15"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Insert"/>
+
+    <Button
+        android:id="@+id/btnQuery"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/F15"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Query"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="5dp"
+        android:id="@+id/recyclerviewResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
