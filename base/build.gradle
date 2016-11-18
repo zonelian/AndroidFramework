@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 ext {
     PUBLISH_GROUP_ID = 'com.zonelian.android.framework'
     PUBLISH_ARTIFACT_ID = 'simple-framework'
-    PUBLISH_VERSION = '1.0'
+    PUBLISH_VERSION = '1.0.1'
 }
 
 android {
@@ -22,6 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -29,10 +33,15 @@ dependencies {
     testCompile rootProject.ext.dependencies["junit"]
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["recyclerview-v7"]
-    compile project(':data')
-    compile project(':mvp')
-    compile project(':core')
-    compile project(':http')
-    compile project(':domain')
+    compile rootProject.ext.dependencies["support-v4"]
+    compile rootProject.ext.dependencies["annotations"]
+    compile rootProject.ext.dependencies["gson"]
+    compile rootProject.ext.dependencies["okhttp3"]
+    compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["logging-okhttp3"]
+    compile rootProject.ext.dependencies["retrofit-gson"]
+    compile rootProject.ext.dependencies["retrofit_rxjava"]
+    compile rootProject.ext.dependencies["rxandroid"]
+    compile rootProject.ext.dependencies["rxjava"]
 }
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
