@@ -6,12 +6,12 @@ maven:
 <dependency>
   <groupId>com.zonelian.android.framework</groupId>
   <artifactId>simple-framework</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <type>pom</type>
 </dependency>
 
 gradle:
-compile 'com.zonelian.android.framework:simple-framework:1.0.1'
+compile 'com.zonelian.android.framework:simple-framework:1.0.2'
 
 
 二、控件依赖：
@@ -19,9 +19,9 @@ maven:
 <dependency>
   <groupId>com.zonelian.android.widget</groupId>
   <artifactId>simple-widget</artifactId>
-  <version>1.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 
 gradle:
-compile 'com.zonelian.android.widget:simple-widget:1.0'
+compile 'com.zonelian.android.widget:simple-widget:1.0.1'
