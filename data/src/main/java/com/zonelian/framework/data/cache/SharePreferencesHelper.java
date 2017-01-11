@@ -129,38 +129,38 @@ public class SharePreferencesHelper {
     }
 
 
-    Map<String, ?> getAll() {
+    public Map<String, ?> getAll() {
         return mPreferences.getAll();
     }
 
     @Nullable
-    String getString(String key, @Nullable String defValue) {
+    public String getString(String key, @Nullable String defValue) {
         return mPreferences.getString(key, defValue);
     }
 
     @TargetApi(11)
     @Nullable
-    Set<String> getStringSet(String key, @Nullable Set<String> defValues) {
+    public Set<String> getStringSet(String key, @Nullable Set<String> defValues) {
         return mPreferences.getStringSet(key, defValues);
     }
 
-    int getInt(String key, int defValue) {
+    public int getInt(String key, int defValue) {
         return mPreferences.getInt(key, defValue);
     }
 
-    long getLong(String key, long defValue) {
+    public long getLong(String key, long defValue) {
         return mPreferences.getLong(key, defValue);
     }
 
-    float getFloat(String key, float defValue) {
+    public float getFloat(String key, float defValue) {
         return mPreferences.getFloat(key, defValue);
     }
 
-    boolean getBoolean(String key, boolean defValue) {
+    public boolean getBoolean(String key, boolean defValue) {
         return mPreferences.getBoolean(key, defValue);
     }
 
-    boolean contains(String key) {
+    public boolean contains(String key) {
         return mPreferences.contains(key);
     }
 
