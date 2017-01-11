@@ -3,7 +3,25 @@ apply plugin: 'com.android.library'
 ext {
     PUBLISH_GROUP_ID = 'com.zonelian.android.framework'
     PUBLISH_ARTIFACT_ID = 'simple-framework'
-    PUBLISH_VERSION = '1.0.2'
+    PUBLISH_VERSION = '1.0.3'
+}
+
+
+def releaseTime() {
+    return new Date().format("yyyyMMdd_HHmm", TimeZone.getTimeZone("Asia/Shanghai"))
+}
+
+def getGitRevision() {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+
+def sdkDestinationPath = "build";
+def zipFile = file('build/intermediates/bundles/release/classes.jar')
+
+task makeJar(type: Jar) {
+    from zipTree(zipFile)
+    baseName = "simple_framework_1.0.3_${releaseTime()}_Git${getGitRevision()}"
+    destinationDir = file(sdkDestinationPath)
 }
 
 android {
