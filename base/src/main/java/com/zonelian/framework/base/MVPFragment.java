@@ -12,26 +12,28 @@ import com.zonelian.framework.core.BaseFragment;
  */
 
 public abstract class MVPFragment<T extends IFragmentPresenter> extends BaseFragment {
-    private T mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        mPresenter = createPresenter();
-        initPresenter(mPresenter);
+        setPresenter(createPresenter());
         super.onCreate(savedInstanceState);
+        initPresenter();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter = null;
-    }
-
-    public T getPresenter() {
-        return mPresenter;
+        if(getPresenter() != null) {
+            getPresenter().onDestory();
+            setPresenter(null);
+        }
     }
 
     public abstract T createPresenter();
 
-    public abstract void initPresenter(T presenter);
+    public abstract void initPresenter();
+
+    public abstract T getPresenter();
+
+    public abstract void setPresenter(T presenter);
 }
