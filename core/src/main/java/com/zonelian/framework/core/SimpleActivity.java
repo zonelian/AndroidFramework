@@ -22,7 +22,7 @@ import static android.widget.Toast.makeText;
  * Created by kernel on 16/6/13.
  * Email: 372786297@qq.com
  */
-public abstract class BaseActivity extends FragmentActivity{
+public abstract class SimpleActivity extends FragmentActivity{
     private ViewFinderDelegate mViewFinderDelegete;
 
     @Override

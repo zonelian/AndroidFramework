@@ -4,14 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.zonelian.framework.base.presenter.IFragmentPresenter;
-import com.zonelian.framework.core.BaseFragment;
+import com.zonelian.framework.core.SimpleFragment;
 
 /**
  * Created by kernel on 2016/10/13.
  * Email: 372786297@qq.com
  */
 
-public abstract class MVPFragment<T extends IFragmentPresenter> extends BaseFragment {
+public abstract class MVPFragment<T extends IFragmentPresenter> extends SimpleFragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
