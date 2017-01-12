@@ -4,14 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.zonelian.framework.base.presenter.IActivityPresenter;
-import com.zonelian.framework.core.BaseActivity;
+import com.zonelian.framework.core.SimpleActivity;
 
 /**
  * Created by kernel on 2016/10/13.
  * Email: 372786297@qq.com
  */
 
-public abstract class MVPActivity<T extends IActivityPresenter> extends BaseActivity {
+public abstract class MVPActivity<T extends IActivityPresenter> extends SimpleActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
