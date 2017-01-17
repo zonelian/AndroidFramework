@@ -17,6 +17,9 @@ public abstract class MVPActivity<T extends IActivityPresenter> extends SimpleAc
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setPresenter(createPresenter());
         super.onCreate(savedInstanceState);
+        if(getPresenter() != null) {
+            getPresenter().onCreate(savedInstanceState);
+        }
         initPresenter();
     }
 
