@@ -64,4 +64,15 @@ public class SerializeHelper {
         }
         return null;
     }
+
+    public boolean clearSerializable(String filePath) {
+        if(TextUtils.isEmpty(filePath)) {
+            return false;
+        }
+        File f = new File(filePath);
+        if(!f.exists()) {
+            return false;
+        }
+        return f.delete();
+    }
 }
