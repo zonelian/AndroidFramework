@@ -1,12 +1,14 @@
 package com.zonelian.androidframework.demo.main;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Toast;
 
 import com.zonelian.androidframework.demo.R;
-import com.zonelian.androidframework.demo.first.FirstActivity;
 import com.zonelian.androidframework.demo.second.SecondActivity;
+import com.zonelian.androidframework.demo.third.ThirdActivity;
 import com.zonelian.framework.base.MVPActivity;
 
 /**
@@ -22,11 +24,6 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
     }
 
     @Override
-    public void initPresenter(MainPresenter presenter) {
-        presenter.setView(this);
-    }
-
-    @Override
     public int initLayout() {
         return R.layout.activity_main;
     }
@@ -38,14 +35,22 @@ public class MainActivity extends MVPActivity<MainPresenter> implements MainView
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btnFirst:
-                        FirstActivity.launch(MainActivity.this);
+                        // schema launch activity demo
+                        Intent intent = new Intent();
+                        intent.setData(Uri.parse("artist://code/main"));
+                        startActivity(intent);
                         break;
                     case R.id.btnSecond:
+
                         SecondActivity.launch(MainActivity.this);
+                        break;
+                    case R.id.btnThird:
+                        // messenger demo
+                        ThirdActivity.launch(MainActivity.this);
                         break;
                 }
             }
-        }, R.id.btnFirst, R.id.btnSecond);
+        }, R.id.btnFirst, R.id.btnSecond, R.id.btnThird);
     }
 
     @Override

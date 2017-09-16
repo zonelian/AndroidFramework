@@ -12,32 +12,39 @@ import com.zonelian.framework.core.SimpleActivity;
  */
 
 public abstract class MVPActivity<T extends IActivityPresenter> extends SimpleActivity {
+    private T mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setPresenter(createPresenter());
+        mPresenter = createPresenter();
+        setPresenter(mPresenter);
         super.onCreate(savedInstanceState);
-        if(getPresenter() != null) {
+        if(mPresenter != null) {
             getPresenter().onCreate(savedInstanceState);
+            initPresenter(mPresenter);
         }
-        initPresenter();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(getPresenter() != null) {
-            getPresenter().onDestory();
+        if(mPresenter != null) {
+            mPresenter.onDestory();
             setPresenter(null);
         }
     }
 
     public abstract T createPresenter();
 
-    public abstract void initPresenter();
+    public void initPresenter(T presenter) {
+    }
 
-    public abstract T getPresenter();
+    public T getPresenter() {
+        return mPresenter;
+    }
 
-    public abstract void setPresenter(T presenter);
+    public void setPresenter(T presenter) {
+        mPresenter = presenter;
+    }
 
 }

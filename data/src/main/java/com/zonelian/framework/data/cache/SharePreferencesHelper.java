@@ -95,6 +95,7 @@ public class SharePreferencesHelper {
         return mPreferences.edit().clear().commit();
     }
 
+    @TargetApi(9)
     public void putStringAndSaveAsync(String key, @Nullable String value) {
         mPreferences.edit().putString(key, value).apply();
     }
@@ -104,26 +105,32 @@ public class SharePreferencesHelper {
         mPreferences.edit().putStringSet(key, values).apply();
     }
 
+    @TargetApi(9)
     public void putIntAndSaveAsync(String key, int value) {
         mPreferences.edit().putInt(key, value).apply();
     }
 
+    @TargetApi(9)
     public void putLongAndSaveAsync(String key, long value) {
         mPreferences.edit().putLong(key, value).apply();
     }
 
+    @TargetApi(9)
     public void putFloatAndSaveAsync(String key, float value) {
         mPreferences.edit().putFloat(key, value).apply();
     }
 
+    @TargetApi(9)
     public void putBooleanAndSaveAsync(String key, boolean value) {
         mPreferences.edit().putBoolean(key, value).apply();
     }
 
+    @TargetApi(9)
     public void removeAndSaveAsync(String key) {
         mPreferences.edit().remove(key).apply();
     }
 
+    @TargetApi(9)
     public void clearAndSaveAsync() {
         mPreferences.edit().clear().apply();
     }

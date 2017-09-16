@@ -27,7 +27,18 @@
 
         <activity android:name=".second.SecondActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="artist"
+                    android:host="first"
+                    android:path="/enter"/>
+            </intent-filter>
         </activity>
+        <activity android:name=".third.ThirdActivity" android:screenOrientation="portrait"/>
+        <service android:name=".third.RemoteService"
+            android:process=":remote"/>
 
     </application>
 
