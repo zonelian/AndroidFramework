@@ -24,7 +24,7 @@ import static android.widget.Toast.makeText;
  * Created by kernel on 16/6/13.
  * Email: 372786297@qq.com
  */
-public abstract class BaseFragment extends Fragment{
+public abstract class SimpleFragment extends Fragment{
     private View mView;
     private ViewFinderDelegate mViewFinderDelegete;
 

@@ -14,19 +14,6 @@ import java.io.ObjectOutputStream;
  * Email: 372786297@qq.com
  */
 public class SerializeHelper {
-//    private static SerializeHelper sInstance;
-//
-//    public static SerializeHelper getInstance() {
-//        if(sInstance == null) {
-//            synchronized (SerializeHelper.class) {
-//                sInstance = new SerializeHelper();
-//            }
-//        }
-//        return sInstance;
-//    }
-//
-//    private SerializeHelper() {
-//    }
 
     public void putSerializable(String filePath, Object obj) {
         if(TextUtils.isEmpty(filePath) || obj == null) {
@@ -63,5 +50,16 @@ public class SerializeHelper {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean clearSerializable(String filePath) {
+        if(TextUtils.isEmpty(filePath)) {
+            return false;
+        }
+        File f = new File(filePath);
+        if(!f.exists()) {
+            return false;
+        }
+        return f.delete();
     }
 }

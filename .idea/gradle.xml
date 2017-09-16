@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/http" />
             <option value="$PROJECT_DIR$/mvp" />
+            <option value="$PROJECT_DIR$/schemademoone" />
+            <option value="$PROJECT_DIR$/schemademotwo" />
             <option value="$PROJECT_DIR$/widget" />
           </set>
         </option>

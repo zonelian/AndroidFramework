@@ -2,16 +2,8 @@ package com.zonelian.androidframework.demo.second;
 
 import android.os.Bundle;
 
-import com.zonelian.androidframework.demo.App;
-import com.zonelian.androidframework.demo.second.remote.BaiduDataServer;
-import com.zonelian.androidframework.demo.second.remote.baidu.model.BaiduModel;
 import com.zonelian.androidframework.demo.second.remote.baidu.model.IDBean;
 import com.zonelian.framework.base.presenter.BaseActivityPresenter;
-
-import rx.Subscription;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.functions.Action2;
 
 /**
  * Created by kernel on 2016/11/17.
@@ -62,44 +54,45 @@ public class SecondPresenter extends BaseActivityPresenter<SecondView> {
     }
 
     public void initData() {
-        // try read from disk cache
-        try {
-            IDBean cache = (IDBean) App.getInstance().getLocalDataLayer().getFileHelper().getSerializable(App.getInstance().getCacheDir() + "/usr_info");
-            if(cache != null) {
-                onInitSuccess(cache);
-            }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // try read from server
-        BaiduDataServer server = App.getInstance().getRemoteDataLayer().getBaiduServer();
-        Subscription subscription = server.subscribeOnUI(server.getID("420984198704207896"),
-                new Action1<BaiduModel<IDBean>>() {
-                    @Override
-                    public void call(BaiduModel<IDBean> bean) {
-                        App.getInstance().getLocalDataLayer().getFileHelper().putSerializable(App.getInstance().getCacheDir() + "/usr_info", bean.data);
-                        onInitSuccess(bean.data);
-                    }
-                }, new Action2<Integer, String>() {
-                    @Override
-                    public void call(Integer integer, String s) {
-                        onInitFailure(integer, s);
-                    }
-                }, new Action0() {
-                    @Override
-                    public void call() {
-                        onInitTimeout();
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Exception e = new Exception(throwable.getMessage());
-                        e.setStackTrace(throwable.getStackTrace());
-                        onInitException(e);
-                    }
-                });
-        addSubscription(subscription);
+//        // try read from disk cache
+//        try {
+//            IDBean cache = (IDBean) App.getInstance().getLocalDataLayer().getFileHelper().getSerializable(App.getInstance().getCacheDir() + "/usr_info");
+//            if(cache != null) {
+//                onInitSuccess(cache);
+//            }
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        // try read from server
+//        BaiduDataServer server = App.getInstance().getRemoteDataLayer().getBaiduServer();
+//        Subscription subscription = App.getInstance().getRemoteDataLayer().subscribeOnUI(server.getID("420984198704207896"),
+//                new Action1<BaiduModel<IDBean>>() {
+//                    @Override
+//                    public void call(BaiduModel<IDBean> bean) {
+//                        App.getInstance().getLocalDataLayer().getFileHelper().putSerializable(App.getInstance().getCacheDir() + "/usr_info",
+//                                bean.data);
+//                        onInitSuccess(bean.data);
+//                    }
+//                }, new Action2<Integer, String>() {
+//                    @Override
+//                    public void call(Integer integer, String s) {
+//                        onInitFailure(integer, s);
+//                    }
+//                }, new Action0() {
+//                    @Override
+//                    public void call() {
+//                        onInitTimeout();
+//                    }
+//                }, new Action1<Throwable>() {
+//                    @Override
+//                    public void call(Throwable throwable) {
+//                        Exception e = new Exception(throwable.getMessage());
+//                        e.setStackTrace(throwable.getStackTrace());
+//                        onInitException(e);
+//                    }
+//                });
+//        addSubscription(subscription);
     }
 
     private void onInitSuccess(IDBean bean) {

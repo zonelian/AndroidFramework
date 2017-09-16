@@ -5,6 +5,7 @@ package com.zonelian.framework.data.cache;
  * Email: 372786297@qq.com
  */
 public interface Cache<K, V> {
-    public V get(K key);
-    public void put(K key, V value);
+    V get(K key);
+    void put(K key, V value);
+    void clear(K key);
 }

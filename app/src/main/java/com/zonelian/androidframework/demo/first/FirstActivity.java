@@ -2,10 +2,8 @@ package com.zonelian.androidframework.demo.first;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.EditText;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.zonelian.androidframework.demo.R;
 import com.zonelian.framework.base.MVPActivity;
@@ -18,9 +16,7 @@ import java.util.List;
  */
 
 public class FirstActivity extends MVPActivity<FirstPresenter> implements FirstView {
-    private EditText mEtInsertName;
-    private RecyclerView mRecyclerViewResult;
-    private UserListAdapter mResultAdapter;
+    private WebView mWebview;
 
     @Override
     public FirstPresenter createPresenter() {
@@ -39,22 +35,15 @@ public class FirstActivity extends MVPActivity<FirstPresenter> implements FirstV
 
     @Override
     public void initView() {
-        mEtInsertName = getViewById(R.id.etName);
-        mRecyclerViewResult = getViewById(R.id.recyclerviewResult);
-        mRecyclerViewResult.setLayoutManager(new LinearLayoutManager(this));
-        setOnClickListener(new View.OnClickListener() {
+        mWebview = getViewById(R.id.webview);
+        mWebview.getSettings().setJavaScriptEnabled(true);
+        mWebview.setWebViewClient(new WebViewClient());
+        new android.os.Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.btnInsert:
-                        getPresenter().insert(getInsertName());
-                        break;
-                    case R.id.btnQuery:
-                        getPresenter().query();
-                        break;
-                }
+            public void run() {
+                mWebview.loadUrl("artist://first/enter");
             }
-        }, R.id.btnInsert, R.id.btnQuery);
+        }, 2000);
     }
 
     @Override
@@ -64,17 +53,15 @@ public class FirstActivity extends MVPActivity<FirstPresenter> implements FirstV
 
     @Override
     public void showInsertEnable(boolean enable) {
-        getButtonById(R.id.btnInsert).setEnabled(enable);
     }
 
     @Override
     public String getInsertName() {
-        return mEtInsertName.getText().toString().trim();
+        return "";
     }
 
     @Override
     public void showQueryEnable(boolean enable) {
-        getButtonById(R.id.btnQuery).setEnabled(enable);
     }
 
     @Override
@@ -87,14 +74,6 @@ public class FirstActivity extends MVPActivity<FirstPresenter> implements FirstV
 
     @Override
     public void showQueryResult(List<UserData> result) {
-        if(mResultAdapter == null) {
-            mResultAdapter = new UserListAdapter();
-            mResultAdapter.addItemAll(result);
-            mRecyclerViewResult.setAdapter(mResultAdapter);
-        }else {
-            mResultAdapter.replace(result);
-            mResultAdapter.notifyDataSetChanged();
-        }
     }
 
     public static void launch(Context context) {

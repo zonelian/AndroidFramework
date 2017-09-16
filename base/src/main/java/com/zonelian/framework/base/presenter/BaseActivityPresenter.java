@@ -16,6 +16,7 @@ import rx.Subscription;
 
 public abstract class BaseActivityPresenter<T extends MVP.MVPView> implements IActivityPresenter<T> {
     private List<Subscription> mSubscriptions;
+    private T mView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,5 +61,15 @@ public abstract class BaseActivityPresenter<T extends MVP.MVPView> implements IA
         if(mSubscriptions != null) {
             mSubscriptions.add(subscription);
         }
+    }
+
+    @Override
+    public void setView(T view) {
+        mView = view;
+    }
+
+    @Override
+    public T getView() {
+        return mView;
     }
 }
