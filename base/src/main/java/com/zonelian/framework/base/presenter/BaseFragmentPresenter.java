@@ -16,6 +16,7 @@ import rx.Subscription;
 
 public abstract class BaseFragmentPresenter<T extends MVP.MVPView> implements IFragmentPresenter<T> {
     private List<Subscription> mSubscriptions;
+    private T mView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,5 +63,13 @@ public abstract class BaseFragmentPresenter<T extends MVP.MVPView> implements IF
         }
     }
 
+    @Override
+    public void setView(T view) {
+        mView = view;
+    }
 
+    @Override
+    public T getView() {
+        return mView;
+    }
 }

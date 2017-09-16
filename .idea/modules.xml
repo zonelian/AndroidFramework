@@ -11,6 +11,8 @@
       <module fileurl="file://$PROJECT_DIR$/framework.iml" filepath="$PROJECT_DIR$/framework.iml" />
       <module fileurl="file://$PROJECT_DIR$/http/http.iml" filepath="$PROJECT_DIR$/http/http.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvp/mvp.iml" filepath="$PROJECT_DIR$/mvp/mvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/schemademoone/schemademoone.iml" filepath="$PROJECT_DIR$/schemademoone/schemademoone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/schemademotwo/schemademotwo.iml" filepath="$PROJECT_DIR$/schemademotwo/schemademotwo.iml" />
       <module fileurl="file://$PROJECT_DIR$/widget/widget.iml" filepath="$PROJECT_DIR$/widget/widget.iml" />
     </modules>
   </component>

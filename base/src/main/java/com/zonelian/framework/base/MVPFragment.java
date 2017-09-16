@@ -12,31 +12,38 @@ import com.zonelian.framework.core.SimpleFragment;
  */
 
 public abstract class MVPFragment<T extends IFragmentPresenter> extends SimpleFragment {
+    private T mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        setPresenter(createPresenter());
+        mPresenter = createPresenter();
+        setPresenter(mPresenter);
         super.onCreate(savedInstanceState);
-        if(getPresenter() != null) {
-            getPresenter().onCreate(savedInstanceState);
+        if(mPresenter != null) {
+            mPresenter.onCreate(savedInstanceState);
+            initPresenter(mPresenter);
         }
-        initPresenter();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(getPresenter() != null) {
-            getPresenter().onDestory();
+        if(mPresenter != null) {
+            mPresenter.onDestory();
             setPresenter(null);
         }
     }
 
     public abstract T createPresenter();
 
-    public abstract void initPresenter();
+    public void initPresenter(T presenter) {
+    }
 
-    public abstract T getPresenter();
+    public T getPresenter() {
+        return mPresenter;
+    }
 
-    public abstract void setPresenter(T presenter);
+    public void setPresenter(T presenter) {
+        mPresenter = presenter;
+    }
 }

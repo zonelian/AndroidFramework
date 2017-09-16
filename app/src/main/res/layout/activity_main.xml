@@ -20,4 +20,12 @@
         android:gravity="center"
         android:text="SecondDemo" />
 
+    <Button
+        android:id="@+id/btnThird"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="ThirdDemo" />
+
 </LinearLayout>
